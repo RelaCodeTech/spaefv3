@@ -1,0 +1,42 @@
+﻿@model SpaEFV3.Models.Tax_Master
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tax_Master</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tax_Short_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tax_Short_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tax_Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tax_Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LookUp_Country.Country_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LookUp_Country.Country_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Tax_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

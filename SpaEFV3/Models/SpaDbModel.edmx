@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DevSpaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DevSpaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Business">
           <Key>
             <PropertyRef Name="Business_ID" />
@@ -62,9 +62,9 @@
           <Property Name="Loc_Country" Type="varchar" MaxLength="100" />
           <Property Name="Loc_ContactNo" Type="varchar" MaxLength="50" />
           <Property Name="Loc_Comment" Type="varchar" MaxLength="200" />
-          <Property Name="Loc_Is_Active" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="Loc_Created_Dt" Type="datetime" Nullable="false" />
-          <Property Name="Loc_Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Loc_Is_Active" Type="char" MaxLength="1" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Loc_Created_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Loc_Updated_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Location_Tax">
           <Key>
@@ -148,7 +148,7 @@ warning 6002: The table/view 'DevSpa.dbo.Order_Taxes' does not have a primary ke
             <PropertyRef Name="Product_ID" />
           </Key>
           <Property Name="Product_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Product_Name" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="Product_Name" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Product_Weight" Type="int" />
           <Property Name="Product_Weight_UOM" Type="varchar" MaxLength="50" />
           <Property Name="Product_MRP" Type="decimal" Precision="7" Scale="2" Nullable="false" />
@@ -159,8 +159,8 @@ warning 6002: The table/view 'DevSpa.dbo.Order_Taxes' does not have a primary ke
           <Property Name="Product_Expiry_Dt" Type="datetime" />
           <Property Name="Product_Barcode" Type="varchar" MaxLength="200" />
           <Property Name="Product_Description" Type="varchar" MaxLength="200" />
-          <Property Name="Product_Created_Dt" Type="datetime" Nullable="false" />
-          <Property Name="Product_Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Product_Created_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Product_Updated_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="Product_Created_By" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -182,8 +182,8 @@ warning 6002: The table/view 'DevSpa.dbo.Purchase_Order' does not have a primary
           <Property Name="Service_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Service_Name" Type="varchar" MaxLength="50" />
           <Property Name="Service_Description" Type="varchar" MaxLength="200" />
-          <Property Name="Service_Created_Dt" Type="datetime" Nullable="false" />
-          <Property Name="Service_Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Service_Created_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Service_Updated_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="Service_Created_By" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -237,8 +237,8 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <Property Name="Treatment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Treatment_Name" Type="varchar" MaxLength="100" />
           <Property Name="Treatment_Description" Type="varchar" MaxLength="200" />
-          <Property Name="Treatment_Created_Dt" Type="datetime" Nullable="false" />
-          <Property Name="Treatment_Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Treatment_Created_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Treatment_Updated_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="Treatment_Created_By" Type="varchar" MaxLength="50" />
         </EntityType>
         <!--Errors Found During Generation:
@@ -261,9 +261,9 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
           <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="User_Fname" Type="varchar" MaxLength="50" />
           <Property Name="User_Lname" Type="varchar" MaxLength="50" />
-          <Property Name="User_Is_Active" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="User_Created_Dt" Type="datetime" Nullable="false" />
-          <Property Name="User_Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="User_Is_Active" Type="char" MaxLength="1" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="User_Created_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="User_Updated_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="UserLog">
           <Key>
@@ -942,8 +942,7 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
             <End Role="Xref_Service_Treatment" EntitySet="Xref_Service_Treatment" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DevSpaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -1009,9 +1008,9 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
           <Property Name="Loc_Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Loc_ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Loc_Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Loc_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Loc_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Loc_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Loc_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Loc_Created_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Loc_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Business" Relationship="Self.FK_Location_Business" FromRole="Location" ToRole="Business" />
           <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_Location" FromRole="Location" ToRole="Customer" />
           <NavigationProperty Name="LookUp_LocationRegion" Relationship="Self.FK_Location_LookUp_LocationRegion" FromRole="Location" ToRole="LookUp_LocationRegion" />
@@ -1095,7 +1094,7 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
             <PropertyRef Name="Product_ID" />
           </Key>
           <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Product_Name" Type="Binary" MaxLength="50" FixedLength="false" Nullable="false" />
+          <Property Name="Product_Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Product_Weight" Type="Int32" />
           <Property Name="Product_Weight_UOM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Product_MRP" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
@@ -1106,8 +1105,8 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
           <Property Name="Product_Expiry_Dt" Type="DateTime" Precision="3" />
           <Property Name="Product_Barcode" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Name="Product_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Product_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Product_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Product_Created_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Product_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="Product_Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Stock_Added" Relationship="Self.FK_Stock_Added_Product" FromRole="Product" ToRole="Stock_Added" />
           <NavigationProperty Name="Treatment_Inventory_Usage" Relationship="Self.FK_Treatment_Inventory_Usage_Product" FromRole="Product" ToRole="Treatment_Inventory_Usage" />
@@ -1119,8 +1118,8 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
           <Property Name="Service_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Service_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Service_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Service_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Service_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Service_Created_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Service_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="Service_Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Purchase_Order" Relationship="Self.FK_Purchase_Order_Service" FromRole="Service" ToRole="Purchase_Order" />
           <NavigationProperty Name="Xref_Location_Service" Relationship="Self.FK_Xref_Location_Service_Service" FromRole="Service" ToRole="Xref_Location_Service" />
@@ -1168,8 +1167,8 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
           <Property Name="Treatment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Treatment_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Name="Treatment_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Name="Treatment_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Treatment_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Treatment_Created_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Treatment_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="Treatment_Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Treatment_Inventory_Usage" Relationship="Self.FK_Treatment_Inventory_Usage_Treatment" FromRole="Treatment" ToRole="Treatment_Inventory_Usage" />
           <NavigationProperty Name="Xref_Service_Treatment" Relationship="Self.FK_Xref_Service_Treatment_Treatment" FromRole="Treatment" ToRole="Xref_Service_Treatment" />
@@ -1183,9 +1182,9 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
           <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="User_Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="User_Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="User_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="User_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="User_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="User_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="User_Created_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="User_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="UserRole" Relationship="Self.FK_User_UserRole" FromRole="User" ToRole="UserRole" />
           <NavigationProperty Name="UserLogs" Relationship="Self.FK_UserLog_User" FromRole="User" ToRole="UserLog" />
         </EntityType>
@@ -1795,17 +1794,17 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
             <Parameter Name="MSG" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="DELETE_LOCATION">
-            <Parameter Name="LOC_ID" Mode="In" Type="Int32" />
+          <Parameter Name="LOC_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GET_ALL_LOCATION" ReturnType="Collection(DevSpaModel.GET_ALL_LOCATION_Result)" />
           <FunctionImport Name="GET_LOC_FOR_REGION" ReturnType="Collection(DevSpaModel.GET_LOC_FOR_REGION_Result)">
-            <Parameter Name="REGION_NAME" Mode="In" Type="String" />
+          <Parameter Name="REGION_NAME" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="GET_LOCATION" ReturnType="Collection(DevSpaModel.GET_LOCATION_Result)">
-            <Parameter Name="LOC_ID" Mode="In" Type="Int32" />
+          <Parameter Name="LOC_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="GET_THERAPIST_FOR_LOC_ID" ReturnType="Collection(DevSpaModel.GET_THERAPIST_FOR_LOC_ID_Result)">
-            <Parameter Name="LOC_ID" Mode="In" Type="Int32" />
+          <Parameter Name="LOC_ID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="IS_VALID_USER">
             <Parameter Name="USER_ID" Mode="In" Type="String" />
@@ -1862,7 +1861,7 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
             <Parameter Name="IS_VALID" Mode="InOut" Type="String" />
           </FunctionImport>
           <FunctionImport Name="USER_LOGGED_OUT">
-            <Parameter Name="USER_ID" Mode="In" Type="String" />
+          <Parameter Name="USER_ID" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <ComplexType Name="GET_ALL_LOCATION_Result">

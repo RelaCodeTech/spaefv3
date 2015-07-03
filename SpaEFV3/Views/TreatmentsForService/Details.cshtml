@@ -1,0 +1,34 @@
+﻿@model SpaEFV3.Models.Xref_Service_Treatment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Xref_Service_Treatment</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Service.Service_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Service.Service_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Treatment.Treatment_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Treatment.Treatment_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Service_Treatment_Xref_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

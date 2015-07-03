@@ -1,0 +1,42 @@
+﻿@model SpaEFV3.Models.Location_Tax
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Location_Tax</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tax_Value)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tax_Value)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.Loc_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.Loc_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tax_Master.Tax_Short_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tax_Master.Tax_Short_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Location_Tax_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

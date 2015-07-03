@@ -1,0 +1,154 @@
+﻿@model SpaEFV3.Models.Location
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Location</h4>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.Loc_ID)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Business_ID, "Business_ID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Business_ID", String.Empty)
+                @Html.ValidationMessageFor(model => model.Business_ID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_Code, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_Code)
+                @Html.ValidationMessageFor(model => model.Loc_Code)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_Region, "Loc_Region", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Loc_Region", String.Empty)
+                @Html.ValidationMessageFor(model => model.Loc_Region)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_Name)
+                @Html.ValidationMessageFor(model => model.Loc_Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_Hotel_Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_Hotel_Name)
+                @Html.ValidationMessageFor(model => model.Loc_Hotel_Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_Spa_Name, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_Spa_Name)
+                @Html.ValidationMessageFor(model => model.Loc_Spa_Name)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_Address, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_Address)
+                @Html.ValidationMessageFor(model => model.Loc_Address)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_City, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_City)
+                @Html.ValidationMessageFor(model => model.Loc_City)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_State, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_State)
+                @Html.ValidationMessageFor(model => model.Loc_State)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_Country, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_Country)
+                @Html.ValidationMessageFor(model => model.Loc_Country)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_ContactNo, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_ContactNo)
+                @Html.ValidationMessageFor(model => model.Loc_ContactNo)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_Comment, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_Comment)
+                @Html.ValidationMessageFor(model => model.Loc_Comment)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_Is_Active, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_Is_Active)
+                @Html.ValidationMessageFor(model => model.Loc_Is_Active)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_Created_Dt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_Created_Dt)
+                @Html.ValidationMessageFor(model => model.Loc_Created_Dt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Loc_Updated_Dt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Loc_Updated_Dt)
+                @Html.ValidationMessageFor(model => model.Loc_Updated_Dt)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>

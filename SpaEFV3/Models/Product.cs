@@ -21,7 +21,7 @@ namespace SpaEFV3.Models
         }
     
         public int Product_ID { get; set; }
-        public byte[] Product_Name { get; set; }
+        public string Product_Name { get; set; }
         public Nullable<int> Product_Weight { get; set; }
         public string Product_Weight_UOM { get; set; }
         public decimal Product_MRP { get; set; }

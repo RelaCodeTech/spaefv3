@@ -1,0 +1,123 @@
+﻿@model IEnumerable<SpaEFV3.Models.Location>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Loc_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loc_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loc_Region)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loc_Hotel_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loc_Spa_Name)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Loc_Address)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Loc_City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loc_State)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Loc_Country)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loc_ContactNo)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Loc_Comment)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Loc_Is_Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loc_Created_Dt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Loc_Updated_Dt)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Business.Business_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LookUp_LocationRegion.Comment)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loc_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loc_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loc_Region)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loc_Hotel_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loc_Spa_Name)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Loc_Address)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Loc_City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loc_State)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Loc_Country)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loc_ContactNo)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Loc_Comment)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Loc_Is_Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loc_Created_Dt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Loc_Updated_Dt)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Business.Business_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LookUp_LocationRegion.Comment)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Loc_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Loc_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Loc_ID })
+        </td>
+    </tr>
+}
+
+</table>

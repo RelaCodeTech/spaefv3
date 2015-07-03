@@ -1,0 +1,69 @@
+﻿@model IEnumerable<SpaEFV3.Models.User>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Pwd)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.User_Fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Lname)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.User_Is_Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Created_Dt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.User_Updated_Dt)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.UserRole.Role_Name)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Pwd)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Lname)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.User_Is_Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Created_Dt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.User_Updated_Dt)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.UserRole.Role_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.User_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.User_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.User_ID })
+        </td>
+    </tr>
+}
+
+</table>

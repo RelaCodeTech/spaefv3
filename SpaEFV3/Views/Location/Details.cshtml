@@ -1,0 +1,138 @@
+﻿@model SpaEFV3.Models.Location
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Location</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_Hotel_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_Hotel_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_Spa_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_Spa_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_City)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_City)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_State)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_State)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_Country)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_Country)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_ContactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_ContactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_Comment)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_Is_Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_Is_Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_Created_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_Created_Dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Loc_Updated_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Loc_Updated_Dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Business.Business_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Business.Business_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LookUp_LocationRegion.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LookUp_LocationRegion.Comment)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Loc_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

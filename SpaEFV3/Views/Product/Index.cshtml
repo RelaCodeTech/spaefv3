@@ -1,0 +1,111 @@
+﻿@model IEnumerable<SpaEFV3.Models.Product>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Weight)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Weight_UOM)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_MRP)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Balance_Qty)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Min_Stock_Lvl)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Vendor)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_MFG_Dt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Expiry_Dt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Barcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Description)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Product_Created_Dt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Updated_Dt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Product_Created_By)
+        </th>*@
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Weight)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Weight_UOM)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_MRP)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Balance_Qty)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Min_Stock_Lvl)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Vendor)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_MFG_Dt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Expiry_Dt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Barcode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Description)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Product_Created_Dt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Updated_Dt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Product_Created_By)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Product_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Product_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Product_ID })
+        </td>
+    </tr>
+}
+
+</table>

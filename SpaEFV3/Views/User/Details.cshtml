@@ -1,0 +1,74 @@
+﻿@model SpaEFV3.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>User</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Pwd)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pwd)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Lname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Lname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Is_Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Is_Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Created_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Created_Dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.User_Updated_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.User_Updated_Dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.UserRole.Comment)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.UserRole.Comment)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.User_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
