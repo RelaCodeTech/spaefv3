@@ -1,0 +1,99 @@
+﻿@model IEnumerable<SpaEFV3.Models.Customer>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Lname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Gender)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_MobileNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_DOB)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_EmailID)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Customer_AltMobileNo)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_CreatedBy)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Customer_Is_Active)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Created_Dt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Customer_Updated_Dt)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Location.Loc_Code)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Lname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Gender)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_MobileNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_DOB)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_EmailID)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Customer_AltMobileNo)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_CreatedBy)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Customer_Is_Active)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Created_Dt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer_Updated_Dt)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Location.Loc_Code)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Customer_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Customer_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Customer_ID })
+        </td>
+    </tr>
+}
+
+</table>

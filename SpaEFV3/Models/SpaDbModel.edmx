@@ -41,9 +41,9 @@
           <Property Name="Customer_AltMobileNo" Type="varchar" MaxLength="15" />
           <Property Name="Customer_Created_Loc_ID" Type="int" Nullable="false" />
           <Property Name="Customer_CreatedBy" Type="varchar" MaxLength="50" />
-          <Property Name="Customer_Is_Active" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="Customer_Created_Dt" Type="datetime" Nullable="false" />
-          <Property Name="Customer_Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Customer_Is_Active" Type="char" MaxLength="1" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Customer_Created_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Customer_Updated_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -226,9 +226,9 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <Property Name="Therapist_LName" Type="varchar" MaxLength="50" />
           <Property Name="Therapist_Gender" Type="char" MaxLength="1" Nullable="false" />
           <Property Name="Therapist_ContactNo" Type="varchar" MaxLength="50" />
-          <Property Name="Therapist_Is_Active" Type="char" MaxLength="1" Nullable="false" />
-          <Property Name="Therapist_Created_Dt" Type="datetime" Nullable="false" />
-          <Property Name="Therapist_Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Therapist_Is_Active" Type="char" MaxLength="1" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Therapist_Created_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
+          <Property Name="Therapist_Updated_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Treatment">
           <Key>
@@ -241,16 +241,14 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <Property Name="Treatment_Updated_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="Treatment_Created_By" Type="varchar" MaxLength="50" />
         </EntityType>
-        <!--Errors Found During Generation:
-warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
         <EntityType Name="Treatment_Inventory_Usage">
           <Key>
-            <PropertyRef Name="Treatment_ID" />
-            <PropertyRef Name="Product_ID" />
+            <PropertyRef Name="Treatment_Inventory_Usage_ID" />
           </Key>
+          <Property Name="Treatment_Inventory_Usage_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Treatment_ID" Type="int" Nullable="false" />
           <Property Name="Product_ID" Type="int" Nullable="false" />
-          <Property Name="Qty_Used" Type="int" />
+          <Property Name="Qty_Used" Type="decimal" Precision="8" Scale="2" />
         </EntityType>
         <EntityType Name="User">
           <Key>
@@ -781,6 +779,7 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
           <EntitySet Name="Tax_Master" EntityType="Self.Tax_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Therapist" EntityType="Self.Therapist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatment" EntityType="Self.Treatment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Treatment_Inventory_Usage" EntityType="Self.Treatment_Inventory_Usage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLog" EntityType="Self.UserLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
@@ -817,13 +816,6 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
     [Stock_Added].[Added_Dt] AS [Added_Dt], 
     [Stock_Added].[Added_By] AS [Added_By]
     FROM [dbo].[Stock_Added] AS [Stock_Added]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="Treatment_Inventory_Usage" EntityType="Self.Treatment_Inventory_Usage" store:Type="Tables" store:Schema="dbo">
-            <DefiningQuery>SELECT 
-    [Treatment_Inventory_Usage].[Treatment_ID] AS [Treatment_ID], 
-    [Treatment_Inventory_Usage].[Product_ID] AS [Product_ID], 
-    [Treatment_Inventory_Usage].[Qty_Used] AS [Qty_Used]
-    FROM [dbo].[Treatment_Inventory_Usage] AS [Treatment_Inventory_Usage]</DefiningQuery>
           </EntitySet>
           <AssociationSet Name="FK_Business_Details_Business" Association="Self.FK_Business_Details_Business">
             <End Role="Business" EntitySet="Business" />
@@ -985,9 +977,9 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
           <Property Name="Customer_AltMobileNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
           <Property Name="Customer_Created_Loc_ID" Type="Int32" Nullable="false" />
           <Property Name="Customer_CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Customer_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Customer_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Customer_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Customer_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Customer_Created_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Customer_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Location" Relationship="Self.FK_Customer_Location" FromRole="Customer" ToRole="Location" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
         </EntityType>
@@ -1155,9 +1147,9 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
           <Property Name="Therapist_LName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Therapist_Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
           <Property Name="Therapist_ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="Therapist_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
-          <Property Name="Therapist_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Therapist_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Therapist_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Therapist_Created_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Therapist_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Xref_Location_Therapist" Relationship="Self.FK_Xref_Location_Therapist_Therapist" FromRole="Therapist" ToRole="Xref_Location_Therapist" />
         </EntityType>
         <EntityType Name="Treatment">
@@ -1294,14 +1286,14 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
         </EntityType>
         <EntityType Name="Treatment_Inventory_Usage">
           <Key>
-            <PropertyRef Name="Treatment_ID" />
-            <PropertyRef Name="Product_ID" />
+            <PropertyRef Name="Treatment_Inventory_Usage_ID" />
           </Key>
           <Property Name="Treatment_ID" Type="Int32" Nullable="false" />
           <Property Name="Product_ID" Type="Int32" Nullable="false" />
-          <Property Name="Qty_Used" Type="Int32" />
+          <Property Name="Qty_Used" Type="Decimal" Precision="8" Scale="2" />
           <NavigationProperty Name="Product" Relationship="Self.FK_Treatment_Inventory_Usage_Product" FromRole="Treatment_Inventory_Usage" ToRole="Product" />
           <NavigationProperty Name="Treatment" Relationship="Self.FK_Treatment_Inventory_Usage_Treatment" FromRole="Treatment_Inventory_Usage" ToRole="Treatment" />
+          <Property Name="Treatment_Inventory_Usage_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
         </EntityType>
         <Association Name="FK_Business_Details_Business">
           <End Role="Business" Type="Self.Business" Multiplicity="1" />
@@ -2252,6 +2244,7 @@ warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not hav
           <EntitySetMapping Name="Treatment_Inventory_Usage">
             <EntityTypeMapping TypeName="DevSpaModel.Treatment_Inventory_Usage">
               <MappingFragment StoreEntitySet="Treatment_Inventory_Usage">
+                <ScalarProperty Name="Treatment_Inventory_Usage_ID" ColumnName="Treatment_Inventory_Usage_ID" />
                 <ScalarProperty Name="Treatment_ID" ColumnName="Treatment_ID" />
                 <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
                 <ScalarProperty Name="Qty_Used" ColumnName="Qty_Used" />

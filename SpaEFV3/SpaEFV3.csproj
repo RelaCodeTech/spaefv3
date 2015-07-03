@@ -85,6 +85,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="DB-Scripts\02-july-2015\sp-script.sql" />
+    <Content Include="DB-Scripts\02-july-2015\table-script.sql" />
+    <Content Include="DB-Scripts\03-july-2015\sp-script.sql" />
+    <Content Include="DB-Scripts\03-july-2015\table-script.sql" />
     <Content Include="Global.asax" />
     <EntityDeploy Include="Models\SpaDbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -119,13 +123,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\CustomerController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LocationTaxController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
     <Compile Include="Controllers\TaxMasterController.cs" />
+    <Compile Include="Controllers\TherapistAtLocationController.cs" />
+    <Compile Include="Controllers\TherapistController.cs" />
     <Compile Include="Controllers\TreatmentController.cs" />
+    <Compile Include="Controllers\TreatmentInventoryUsageController.cs" />
     <Compile Include="Controllers\TreatmentsForServiceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
@@ -299,6 +307,26 @@
     <Content Include="Views\Product\Details.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Therapist\Create.cshtml" />
+    <Content Include="Views\Therapist\Delete.cshtml" />
+    <Content Include="Views\Therapist\Details.cshtml" />
+    <Content Include="Views\Therapist\Edit.cshtml" />
+    <Content Include="Views\Therapist\Index.cshtml" />
+    <Content Include="Views\TherapistAtLocation\Create.cshtml" />
+    <Content Include="Views\TherapistAtLocation\Delete.cshtml" />
+    <Content Include="Views\TherapistAtLocation\Details.cshtml" />
+    <Content Include="Views\TherapistAtLocation\Edit.cshtml" />
+    <Content Include="Views\TherapistAtLocation\Index.cshtml" />
+    <Content Include="Views\TreatmentInventoryUsage\Create.cshtml" />
+    <Content Include="Views\TreatmentInventoryUsage\Delete.cshtml" />
+    <Content Include="Views\TreatmentInventoryUsage\Details.cshtml" />
+    <Content Include="Views\TreatmentInventoryUsage\Edit.cshtml" />
+    <Content Include="Views\TreatmentInventoryUsage\Index.cshtml" />
+    <Content Include="Views\Customer\Create.cshtml" />
+    <Content Include="Views\Customer\Delete.cshtml" />
+    <Content Include="Views\Customer\Details.cshtml" />
+    <Content Include="Views\Customer\Edit.cshtml" />
+    <Content Include="Views\Customer\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

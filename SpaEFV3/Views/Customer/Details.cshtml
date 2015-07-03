@@ -1,0 +1,114 @@
+﻿@model SpaEFV3.Models.Customer
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Customer</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Lname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Lname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_MobileNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_MobileNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_DOB)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_DOB)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_EmailID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_EmailID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_AltMobileNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_AltMobileNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_CreatedBy)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_CreatedBy)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Is_Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Is_Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Created_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Created_Dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer_Updated_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer_Updated_Dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.Loc_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.Loc_Code)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Customer_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

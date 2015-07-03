@@ -1,0 +1,74 @@
+﻿@model SpaEFV3.Models.Therapist
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Therapist</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Therapist_FName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Therapist_FName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Therapist_LName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Therapist_LName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Therapist_Gender)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Therapist_Gender)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Therapist_ContactNo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Therapist_ContactNo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Therapist_Is_Active)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Therapist_Is_Active)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Therapist_Created_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Therapist_Created_Dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Therapist_Updated_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Therapist_Updated_Dt)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Therapist_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,42 @@
+﻿@model SpaEFV3.Models.Treatment_Inventory_Usage
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Treatment_Inventory_Usage</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Qty_Used)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Qty_Used)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Product.Product_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Product.Product_Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Treatment.Treatment_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Treatment.Treatment_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Treatment_Inventory_Usage_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

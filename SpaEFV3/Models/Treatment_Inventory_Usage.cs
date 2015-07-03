@@ -16,7 +16,8 @@ namespace SpaEFV3.Models
     {
         public int Treatment_ID { get; set; }
         public int Product_ID { get; set; }
-        public Nullable<int> Qty_Used { get; set; }
+        public Nullable<decimal> Qty_Used { get; set; }
+        public int Treatment_Inventory_Usage_ID { get; set; }
     
         public virtual Product Product { get; set; }
         public virtual Treatment Treatment { get; set; }
