@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="13a374375ae745fc9f8696434f6cd626" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="DevSpaModel.Business" Width="1.5" PointX="0.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Business_Details" Width="1.5" PointX="3" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Customer" Width="1.5" PointX="8.25" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Location" Width="1.5" PointX="6" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Location_Tax" Width="1.5" PointX="8.25" PointY="8.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.LookUp_Country" Width="1.5" PointX="3.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.LookUp_LocationRegion" Width="1.5" PointX="3.75" PointY="8.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.LookUp_Payment_Mode" Width="1.5" PointX="10.5" PointY="20.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.LookUp_State" Width="1.5" PointX="6" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Order" Width="1.5" PointX="10.5" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Product" Width="1.5" PointX="13.75" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Service" Width="1.5" PointX="11.5" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.sysdiagram" Width="1.5" PointX="0.75" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Tax_Master" Width="1.5" PointX="6" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Therapist" Width="1.5" PointX="9" PointY="3.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Treatment" Width="1.5" PointX="13.75" PointY="18" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.User" Width="1.5" PointX="18" PointY="7.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.UserLog" Width="1.5" PointX="20.25" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.UserRole" Width="1.5" PointX="15.75" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Voucher_Master" Width="1.5" PointX="10.5" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Voucher_Usage" Width="1.5" PointX="12.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Xref_Location_Service" Width="1.5" PointX="8.25" PointY="16.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Xref_Location_Therapist" Width="1.5" PointX="11.25" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Xref_Service_Treatment" Width="1.5" PointX="16" PointY="11.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Order_Payment_Mode" Width="1.5" PointX="12.75" PointY="15.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Purchase_Order" Width="1.5" PointX="13.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Stock_Added" Width="1.5" PointX="16" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DevSpaModel.Treatment_Inventory_Usage" Width="1.5" PointX="16" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="DevSpaModel.FK_Business_Details_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Location_Business" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Customer_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Order_Customer" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Location_LookUp_LocationRegion" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Location_Tax_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Order_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Xref_Location_Service_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Xref_Location_Therapist_Location" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Location_Tax_Tax_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_LookUp_State_LookUp_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Tax_Master_LookUp_Country" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Order_Payment_Mode_LookUp_Payment_Mode" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Order_Payment_Mode_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Purchase_Order_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Voucher_Usage_Order" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Stock_Added_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Treatment_Inventory_Usage_Product" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Purchase_Order_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Xref_Location_Service_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Xref_Service_Treatment_Service" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Xref_Location_Therapist_Therapist" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Treatment_Inventory_Usage_Treatment" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Xref_Service_Treatment_Treatment" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_User_UserRole" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_UserLog_User" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.FK_Voucher_Usage_Voucher_Master" ManuallyRouted="false" />
+        <AssociationConnector Association="DevSpaModel.Order_Taxes" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

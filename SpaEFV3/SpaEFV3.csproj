@@ -38,7 +38,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.0.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -78,6 +86,23 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <EntityDeploy Include="Models\SpaDbModel.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SpaDbModel.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SpaDbModel.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SpaDbModel.edmx</DependentUpon>
+      <LastGenOutput>SpaDbModel.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\SpaDbModel.edmx.diagram">
+      <DependentUpon>SpaDbModel.edmx</DependentUpon>
+    </Content>
+    <Content Include="Models\SpaDbModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SpaDbModel.edmx</DependentUpon>
+      <LastGenOutput>SpaDbModel.cs</LastGenOutput>
+    </Content>
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -98,6 +123,123 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\Business.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Business_Details.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_ALL_LOCATION_Result.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_LOCATION_Result.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_LOC_FOR_REGION_Result.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\GET_THERAPIST_FOR_LOC_ID_Result.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Location.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Location_Tax.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LookUp_Country.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LookUp_LocationRegion.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LookUp_Payment_Mode.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\LookUp_State.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Order_Payment_Mode.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Product.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Purchase_Order.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Service.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SpaDbModel.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpaDbModel.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SpaDbModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SpaDbModel.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SpaDbModel.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sp_helpdiagrams_Result.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Stock_Added.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\sysdiagram.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Tax_Master.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Therapist.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Treatment.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Treatment_Inventory_Usage.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\User.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserLog.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\UserRole.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Voucher_Master.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Voucher_Usage.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Xref_Location_Service.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Xref_Location_Therapist.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Xref_Service_Treatment.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -112,7 +254,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

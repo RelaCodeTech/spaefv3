@@ -1,0 +1,2392 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="DevSpaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Business">
+          <Key>
+            <PropertyRef Name="Business_ID" />
+          </Key>
+          <Property Name="Business_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Business_Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Business_Details">
+          <Key>
+            <PropertyRef Name="Business_ID" />
+          </Key>
+          <Property Name="Business_ID" Type="int" Nullable="false" />
+          <Property Name="Business_Address" Type="varchar" MaxLength="100" />
+          <Property Name="Business_City" Type="varchar" MaxLength="50" />
+          <Property Name="Business_State" Type="varchar" MaxLength="50" />
+          <Property Name="Business_Org_Country" Type="varchar" MaxLength="50" />
+          <Property Name="Business_Is_Registered" Type="char" MaxLength="1" />
+          <Property Name="Business_Description" Type="varchar" MaxLength="200" />
+          <Property Name="Business_Created_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Business_Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Business_Updated_By" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="Customer_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_Fname" Type="varchar" MaxLength="50" />
+          <Property Name="Customer_Lname" Type="varchar" MaxLength="50" />
+          <Property Name="Customer_Gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Customer_MobileNo" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Customer_DOB" Type="datetime" />
+          <Property Name="Customer_EmailID" Type="varchar" MaxLength="50" />
+          <Property Name="Customer_AltMobileNo" Type="varchar" MaxLength="15" />
+          <Property Name="Customer_Created_Loc_ID" Type="int" Nullable="false" />
+          <Property Name="Customer_CreatedBy" Type="varchar" MaxLength="50" />
+          <Property Name="Customer_Is_Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Customer_Created_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Customer_Updated_Dt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Loc_ID" />
+          </Key>
+          <Property Name="Loc_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Business_ID" Type="int" Nullable="false" />
+          <Property Name="Loc_Code" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Loc_Region" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Loc_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Loc_Hotel_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Loc_Spa_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Loc_Address" Type="varchar" MaxLength="150" />
+          <Property Name="Loc_City" Type="varchar" MaxLength="50" />
+          <Property Name="Loc_State" Type="varchar" MaxLength="50" />
+          <Property Name="Loc_Country" Type="varchar" MaxLength="100" />
+          <Property Name="Loc_ContactNo" Type="varchar" MaxLength="50" />
+          <Property Name="Loc_Comment" Type="varchar" MaxLength="200" />
+          <Property Name="Loc_Is_Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Loc_Created_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Loc_Updated_Dt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location_Tax">
+          <Key>
+            <PropertyRef Name="Location_Tax_ID" />
+          </Key>
+          <Property Name="Location_Tax_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Location_ID" Type="int" Nullable="false" />
+          <Property Name="Tax_ID" Type="int" Nullable="false" />
+          <Property Name="Tax_Value" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="LookUp_Country">
+          <Key>
+            <PropertyRef Name="Country_ID" />
+          </Key>
+          <Property Name="Country_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country_Name" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LookUp_LocationRegion">
+          <Key>
+            <PropertyRef Name="Region_Name" />
+          </Key>
+          <Property Name="Region_Name" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="LookUp_Payment_Mode">
+          <Key>
+            <PropertyRef Name="Payment_Mode_ID" />
+          </Key>
+          <Property Name="Payment_Mode_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Payment_Mode_Code" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Payment_Mode_Description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="LookUp_State">
+          <Key>
+            <PropertyRef Name="State_ID" />
+          </Key>
+          <Property Name="State_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country_ID" Type="int" Nullable="false" />
+          <Property Name="State_Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_ID" Type="int" Nullable="false" />
+          <Property Name="Order_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Order_Loc_ID" Type="int" Nullable="false" />
+          <Property Name="Order_Currency_Code" Type="varchar" MaxLength="10" />
+          <Property Name="Order_Gross_Amount" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Order_Net_Amount" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Voucher_Usage_ID" Type="int" />
+          <Property Name="Order_Comments" Type="varchar" MaxLength="50" />
+          <Property Name="Order_Created_By" Type="varchar" MaxLength="50" />
+          <Property Name="Order_Updated_Dt" Type="datetime" />
+          <Property Name="Order_Updated_By" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DevSpa.dbo.Order_Payment_Mode' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Order_Payment_Mode">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+            <PropertyRef Name="Payment_Mode_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="int" Nullable="false" />
+          <Property Name="Payment_Mode_ID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DevSpa.dbo.Order_Taxes' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Order_Taxes">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+            <PropertyRef Name="Location_Tax_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="int" Nullable="false" />
+          <Property Name="Location_Tax_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Product_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Product_Name" Type="varbinary" MaxLength="50" Nullable="false" />
+          <Property Name="Product_Weight" Type="int" />
+          <Property Name="Product_Weight_UOM" Type="varchar" MaxLength="50" />
+          <Property Name="Product_MRP" Type="decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="Product_Balance_Qty" Type="int" />
+          <Property Name="Product_Min_Stock_Lvl" Type="int" />
+          <Property Name="Product_Vendor" Type="varchar" MaxLength="50" />
+          <Property Name="Product_MFG_Dt" Type="datetime" />
+          <Property Name="Product_Expiry_Dt" Type="datetime" />
+          <Property Name="Product_Barcode" Type="varchar" MaxLength="200" />
+          <Property Name="Product_Description" Type="varchar" MaxLength="200" />
+          <Property Name="Product_Created_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Product_Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Product_Created_By" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DevSpa.dbo.Purchase_Order' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Purchase_Order">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+            <PropertyRef Name="Service_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="int" Nullable="false" />
+          <Property Name="Service_ID" Type="int" Nullable="false" />
+          <Property Name="Service_Amount" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Service_Discount" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Service_ID" />
+          </Key>
+          <Property Name="Service_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Service_Name" Type="varchar" MaxLength="50" />
+          <Property Name="Service_Description" Type="varchar" MaxLength="200" />
+          <Property Name="Service_Created_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Service_Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Service_Created_By" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Stock_Added">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+            <PropertyRef Name="Added_Dt" />
+          </Key>
+          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="Qty_Added" Type="int" />
+          <Property Name="Added_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Added_By" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <EntityType Name="Tax_Master">
+          <Key>
+            <PropertyRef Name="Tax_ID" />
+          </Key>
+          <Property Name="Tax_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Country_ID" Type="int" Nullable="false" />
+          <Property Name="Tax_Short_Name" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="Tax_Description" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Therapist">
+          <Key>
+            <PropertyRef Name="Therapist_ID" />
+          </Key>
+          <Property Name="Therapist_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Therapist_FName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Therapist_LName" Type="varchar" MaxLength="50" />
+          <Property Name="Therapist_Gender" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Therapist_ContactNo" Type="varchar" MaxLength="50" />
+          <Property Name="Therapist_Is_Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Therapist_Created_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Therapist_Updated_Dt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Treatment">
+          <Key>
+            <PropertyRef Name="Treatment_ID" />
+          </Key>
+          <Property Name="Treatment_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Treatment_Name" Type="varchar" MaxLength="100" />
+          <Property Name="Treatment_Description" Type="varchar" MaxLength="200" />
+          <Property Name="Treatment_Created_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Treatment_Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Treatment_Created_By" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'DevSpa.dbo.Treatment_Inventory_Usage' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Treatment_Inventory_Usage">
+          <Key>
+            <PropertyRef Name="Treatment_ID" />
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Treatment_ID" Type="int" Nullable="false" />
+          <Property Name="Product_ID" Type="int" Nullable="false" />
+          <Property Name="Qty_Used" Type="int" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Pwd" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Role" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="User_Fname" Type="varchar" MaxLength="50" />
+          <Property Name="User_Lname" Type="varchar" MaxLength="50" />
+          <Property Name="User_Is_Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="User_Created_Dt" Type="datetime" Nullable="false" />
+          <Property Name="User_Updated_Dt" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserLog">
+          <Key>
+            <PropertyRef Name="User_Log_ID" />
+          </Key>
+          <Property Name="User_Log_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Log_TimeStamp" Type="datetime" Nullable="false" />
+          <Property Name="Log_Comment" Type="varchar" MaxLength="250" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Role_Name" />
+          </Key>
+          <Property Name="Role_Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Comment" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Voucher_Master">
+          <Key>
+            <PropertyRef Name="Voucher_ID" />
+          </Key>
+          <Property Name="Voucher_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Voucher_Amount" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Voucher_Created_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Voucher_Expiry_Dt" Type="datetime" />
+          <Property Name="Voucher_Created_By" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Voucher_Usage">
+          <Key>
+            <PropertyRef Name="Voucher_Usage_ID" />
+          </Key>
+          <Property Name="Voucher_Usage_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Voucher_ID" Type="int" Nullable="false" />
+          <Property Name="Order_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Xref_Location_Service">
+          <Key>
+            <PropertyRef Name="Location_Service_Xref_ID" />
+          </Key>
+          <Property Name="Location_Service_Xref_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Loc_ID" Type="int" Nullable="false" />
+          <Property Name="Service_ID" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="7" Scale="2" />
+        </EntityType>
+        <EntityType Name="Xref_Location_Therapist">
+          <Key>
+            <PropertyRef Name="Loc_Ther_Xref_ID" />
+          </Key>
+          <Property Name="Loc_Ther_Xref_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Loc_ID" Type="int" Nullable="false" />
+          <Property Name="Therapist_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Xref_Service_Treatment">
+          <Key>
+            <PropertyRef Name="Service_Treatment_Xref_ID" />
+          </Key>
+          <Property Name="Service_Treatment_Xref_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Service_ID" Type="int" Nullable="false" />
+          <Property Name="Treatment_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Business_Details_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="1" />
+          <End Role="Business_Details" Type="Self.Business_Details" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="Business_ID" />
+            </Principal>
+            <Dependent Role="Business_Details">
+              <PropertyRef Name="Business_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="Customer_Created_Loc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="Business_ID" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="Business_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_LookUp_LocationRegion">
+          <End Role="LookUp_LocationRegion" Type="Self.LookUp_LocationRegion" Multiplicity="1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookUp_LocationRegion">
+              <PropertyRef Name="Region_Name" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="Loc_Region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Tax_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Location_Tax" Type="Self.Location_Tax" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="Location_Tax">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Tax_Tax_Master">
+          <End Role="Tax_Master" Type="Self.Tax_Master" Multiplicity="1" />
+          <End Role="Location_Tax" Type="Self.Location_Tax" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tax_Master">
+              <PropertyRef Name="Tax_ID" />
+            </Principal>
+            <Dependent Role="Location_Tax">
+              <PropertyRef Name="Tax_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LookUp_State_LookUp_Country">
+          <End Role="LookUp_Country" Type="Self.LookUp_Country" Multiplicity="1" />
+          <End Role="LookUp_State" Type="Self.LookUp_State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookUp_Country">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="LookUp_State">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Order_Loc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Payment_Mode_LookUp_Payment_Mode">
+          <End Role="LookUp_Payment_Mode" Type="Self.LookUp_Payment_Mode" Multiplicity="1" />
+          <End Role="Order_Payment_Mode" Type="Self.Order_Payment_Mode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookUp_Payment_Mode">
+              <PropertyRef Name="Payment_Mode_ID" />
+            </Principal>
+            <Dependent Role="Order_Payment_Mode">
+              <PropertyRef Name="Payment_Mode_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Payment_Mode_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order_Payment_Mode" Type="Self.Order_Payment_Mode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Order_Payment_Mode">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Taxes_Location_Tax">
+          <End Role="Location_Tax" Type="Self.Location_Tax" Multiplicity="1" />
+          <End Role="Order_Taxes" Type="Self.Order_Taxes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location_Tax">
+              <PropertyRef Name="Location_Tax_ID" />
+            </Principal>
+            <Dependent Role="Order_Taxes">
+              <PropertyRef Name="Location_Tax_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Taxes_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order_Taxes" Type="Self.Order_Taxes" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Order_Taxes">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Service_ID" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="Service_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Added_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Stock_Added" Type="Self.Stock_Added" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Stock_Added">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tax_Master_LookUp_Country">
+          <End Role="LookUp_Country" Type="Self.LookUp_Country" Multiplicity="1" />
+          <End Role="Tax_Master" Type="Self.Tax_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookUp_Country">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="Tax_Master">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Treatment_Inventory_Usage_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Treatment_Inventory_Usage" Type="Self.Treatment_Inventory_Usage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Treatment_Inventory_Usage">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Treatment_Inventory_Usage_Treatment">
+          <End Role="Treatment" Type="Self.Treatment" Multiplicity="1" />
+          <End Role="Treatment_Inventory_Usage" Type="Self.Treatment_Inventory_Usage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Treatment">
+              <PropertyRef Name="Treatment_ID" />
+            </Principal>
+            <Dependent Role="Treatment_Inventory_Usage">
+              <PropertyRef Name="Treatment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserRole">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="Role_Name" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLog_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserLog" Type="Self.UserLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="UserLog">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voucher_Usage_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Voucher_Usage" Type="Self.Voucher_Usage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Voucher_Usage">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voucher_Usage_Voucher_Master">
+          <End Role="Voucher_Master" Type="Self.Voucher_Master" Multiplicity="1" />
+          <End Role="Voucher_Usage" Type="Self.Voucher_Usage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voucher_Master">
+              <PropertyRef Name="Voucher_ID" />
+            </Principal>
+            <Dependent Role="Voucher_Usage">
+              <PropertyRef Name="Voucher_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Location_Service_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Xref_Location_Service" Type="Self.Xref_Location_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="Xref_Location_Service">
+              <PropertyRef Name="Loc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Location_Service_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Xref_Location_Service" Type="Self.Xref_Location_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Service_ID" />
+            </Principal>
+            <Dependent Role="Xref_Location_Service">
+              <PropertyRef Name="Service_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Location_Therapist_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Xref_Location_Therapist" Type="Self.Xref_Location_Therapist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="Xref_Location_Therapist">
+              <PropertyRef Name="Loc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Location_Therapist_Therapist">
+          <End Role="Therapist" Type="Self.Therapist" Multiplicity="1" />
+          <End Role="Xref_Location_Therapist" Type="Self.Xref_Location_Therapist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Therapist">
+              <PropertyRef Name="Therapist_ID" />
+            </Principal>
+            <Dependent Role="Xref_Location_Therapist">
+              <PropertyRef Name="Therapist_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Service_Treatment_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Xref_Service_Treatment" Type="Self.Xref_Service_Treatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Service_ID" />
+            </Principal>
+            <Dependent Role="Xref_Service_Treatment">
+              <PropertyRef Name="Service_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Service_Treatment_Treatment">
+          <End Role="Treatment" Type="Self.Treatment" Multiplicity="1" />
+          <End Role="Xref_Service_Treatment" Type="Self.Xref_Service_Treatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Treatment">
+              <PropertyRef Name="Treatment_ID" />
+            </Principal>
+            <Dependent Role="Xref_Service_Treatment">
+              <PropertyRef Name="Treatment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="ADD_LOCATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Loc_Code" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Region" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Hotel_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Spa_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Address" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_City" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_State" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Country" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_ContactNo" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Comment" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="ADD_USER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USER_ID" Type="varchar" Mode="In" />
+          <Parameter Name="PWD" Type="varchar" Mode="In" />
+          <Parameter Name="ROLE" Type="varchar" Mode="In" />
+          <Parameter Name="USER_FNAME" Type="varchar" Mode="In" />
+          <Parameter Name="USER_LNAME" Type="varchar" Mode="In" />
+          <Parameter Name="MSG" Type="varchar" Mode="InOut" />
+        </Function>
+        <Function Name="DELETE_LOCATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LOC_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="GET_ALL_LOCATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="GET_LOC_FOR_REGION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="REGION_NAME" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="GET_LOCATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LOC_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="GET_THERAPIST_FOR_LOC_ID" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LOC_ID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="IS_VALID_USER" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USER_ID" Type="varchar" Mode="In" />
+          <Parameter Name="PWD" Type="varchar" Mode="In" />
+          <Parameter Name="IS_ACTIVE" Type="char" Mode="InOut" />
+        </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="UPDATE_LOCATION" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="LOC_ID" Type="int" Mode="In" />
+          <Parameter Name="Loc_Code" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Region" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Hotel_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Spa_Name" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Address" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_City" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_State" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Country" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_ContactNo" Type="varchar" Mode="In" />
+          <Parameter Name="Loc_Comment" Type="varchar" Mode="In" />
+        </Function>
+        <Function Name="USER_LOGGED_IN" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USER_ID" Type="varchar" Mode="In" />
+          <Parameter Name="PWD" Type="varchar" Mode="In" />
+          <Parameter Name="IS_VALID" Type="char" Mode="InOut" />
+        </Function>
+        <Function Name="USER_LOGGED_OUT" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="USER_ID" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="DevSpaModelStoreContainer">
+          <EntitySet Name="Business" EntityType="Self.Business" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Business_Details" EntityType="Self.Business_Details" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location_Tax" EntityType="Self.Location_Tax" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookUp_Country" EntityType="Self.LookUp_Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookUp_LocationRegion" EntityType="Self.LookUp_LocationRegion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookUp_Payment_Mode" EntityType="Self.LookUp_Payment_Mode" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LookUp_State" EntityType="Self.LookUp_State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tax_Master" EntityType="Self.Tax_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Therapist" EntityType="Self.Therapist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Treatment" EntityType="Self.Treatment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserLog" EntityType="Self.UserLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voucher_Master" EntityType="Self.Voucher_Master" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voucher_Usage" EntityType="Self.Voucher_Usage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Xref_Location_Service" EntityType="Self.Xref_Location_Service" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Xref_Location_Therapist" EntityType="Self.Xref_Location_Therapist" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Xref_Service_Treatment" EntityType="Self.Xref_Service_Treatment" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Order_Payment_Mode" EntityType="Self.Order_Payment_Mode" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Order_Payment_Mode].[Order_ID] AS [Order_ID], 
+    [Order_Payment_Mode].[Payment_Mode_ID] AS [Payment_Mode_ID], 
+    [Order_Payment_Mode].[Amount] AS [Amount]
+    FROM [dbo].[Order_Payment_Mode] AS [Order_Payment_Mode]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Order_Taxes" EntityType="Self.Order_Taxes" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Order_Taxes].[Order_ID] AS [Order_ID], 
+    [Order_Taxes].[Location_Tax_ID] AS [Location_Tax_ID]
+    FROM [dbo].[Order_Taxes] AS [Order_Taxes]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Purchase_Order" EntityType="Self.Purchase_Order" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Purchase_Order].[Order_ID] AS [Order_ID], 
+    [Purchase_Order].[Service_ID] AS [Service_ID], 
+    [Purchase_Order].[Service_Amount] AS [Service_Amount], 
+    [Purchase_Order].[Service_Discount] AS [Service_Discount]
+    FROM [dbo].[Purchase_Order] AS [Purchase_Order]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Stock_Added" EntityType="Self.Stock_Added" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Stock_Added].[Product_ID] AS [Product_ID], 
+    [Stock_Added].[Qty_Added] AS [Qty_Added], 
+    [Stock_Added].[Added_Dt] AS [Added_Dt], 
+    [Stock_Added].[Added_By] AS [Added_By]
+    FROM [dbo].[Stock_Added] AS [Stock_Added]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Treatment_Inventory_Usage" EntityType="Self.Treatment_Inventory_Usage" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Treatment_Inventory_Usage].[Treatment_ID] AS [Treatment_ID], 
+    [Treatment_Inventory_Usage].[Product_ID] AS [Product_ID], 
+    [Treatment_Inventory_Usage].[Qty_Used] AS [Qty_Used]
+    FROM [dbo].[Treatment_Inventory_Usage] AS [Treatment_Inventory_Usage]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Business_Details_Business" Association="Self.FK_Business_Details_Business">
+            <End Role="Business" EntitySet="Business" />
+            <End Role="Business_Details" EntitySet="Business_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Location" Association="Self.FK_Customer_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Customer" EntitySet="Customer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Business" Association="Self.FK_Location_Business">
+            <End Role="Business" EntitySet="Business" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_LookUp_LocationRegion" Association="Self.FK_Location_LookUp_LocationRegion">
+            <End Role="LookUp_LocationRegion" EntitySet="LookUp_LocationRegion" />
+            <End Role="Location" EntitySet="Location" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Tax_Location" Association="Self.FK_Location_Tax_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Location_Tax" EntitySet="Location_Tax" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Tax_Tax_Master" Association="Self.FK_Location_Tax_Tax_Master">
+            <End Role="Tax_Master" EntitySet="Tax_Master" />
+            <End Role="Location_Tax" EntitySet="Location_Tax" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LookUp_State_LookUp_Country" Association="Self.FK_LookUp_State_LookUp_Country">
+            <End Role="LookUp_Country" EntitySet="LookUp_Country" />
+            <End Role="LookUp_State" EntitySet="LookUp_State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Location" Association="Self.FK_Order_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Payment_Mode_LookUp_Payment_Mode" Association="Self.FK_Order_Payment_Mode_LookUp_Payment_Mode">
+            <End Role="LookUp_Payment_Mode" EntitySet="LookUp_Payment_Mode" />
+            <End Role="Order_Payment_Mode" EntitySet="Order_Payment_Mode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Payment_Mode_Order" Association="Self.FK_Order_Payment_Mode_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Order_Payment_Mode" EntitySet="Order_Payment_Mode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Taxes_Location_Tax" Association="Self.FK_Order_Taxes_Location_Tax">
+            <End Role="Location_Tax" EntitySet="Location_Tax" />
+            <End Role="Order_Taxes" EntitySet="Order_Taxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Taxes_Order" Association="Self.FK_Order_Taxes_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Order_Taxes" EntitySet="Order_Taxes" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Order" Association="Self.FK_Purchase_Order_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Service" Association="Self.FK_Purchase_Order_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Added_Product" Association="Self.FK_Stock_Added_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Stock_Added" EntitySet="Stock_Added" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tax_Master_LookUp_Country" Association="Self.FK_Tax_Master_LookUp_Country">
+            <End Role="LookUp_Country" EntitySet="LookUp_Country" />
+            <End Role="Tax_Master" EntitySet="Tax_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Inventory_Usage_Product" Association="Self.FK_Treatment_Inventory_Usage_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Treatment_Inventory_Usage" EntitySet="Treatment_Inventory_Usage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Inventory_Usage_Treatment" Association="Self.FK_Treatment_Inventory_Usage_Treatment">
+            <End Role="Treatment" EntitySet="Treatment" />
+            <End Role="Treatment_Inventory_Usage" EntitySet="Treatment_Inventory_Usage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserRole" Association="Self.FK_User_UserRole">
+            <End Role="UserRole" EntitySet="UserRole" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLog_User" Association="Self.FK_UserLog_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="UserLog" EntitySet="UserLog" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voucher_Usage_Order" Association="Self.FK_Voucher_Usage_Order">
+            <End Role="Order" EntitySet="Order" />
+            <End Role="Voucher_Usage" EntitySet="Voucher_Usage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voucher_Usage_Voucher_Master" Association="Self.FK_Voucher_Usage_Voucher_Master">
+            <End Role="Voucher_Master" EntitySet="Voucher_Master" />
+            <End Role="Voucher_Usage" EntitySet="Voucher_Usage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Location_Service_Location" Association="Self.FK_Xref_Location_Service_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Xref_Location_Service" EntitySet="Xref_Location_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Location_Service_Service" Association="Self.FK_Xref_Location_Service_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Xref_Location_Service" EntitySet="Xref_Location_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Location_Therapist_Location" Association="Self.FK_Xref_Location_Therapist_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="Xref_Location_Therapist" EntitySet="Xref_Location_Therapist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Location_Therapist_Therapist" Association="Self.FK_Xref_Location_Therapist_Therapist">
+            <End Role="Therapist" EntitySet="Therapist" />
+            <End Role="Xref_Location_Therapist" EntitySet="Xref_Location_Therapist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Service_Treatment_Service" Association="Self.FK_Xref_Service_Treatment_Service">
+            <End Role="Service" EntitySet="Service" />
+            <End Role="Xref_Service_Treatment" EntitySet="Xref_Service_Treatment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Service_Treatment_Treatment" Association="Self.FK_Xref_Service_Treatment_Treatment">
+            <End Role="Treatment" EntitySet="Treatment" />
+            <End Role="Xref_Service_Treatment" EntitySet="Xref_Service_Treatment" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DevSpaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Business">
+          <Key>
+            <PropertyRef Name="Business_ID" />
+          </Key>
+          <Property Name="Business_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Business_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Business_Details" Relationship="Self.FK_Business_Details_Business" FromRole="Business" ToRole="Business_Details" />
+          <NavigationProperty Name="Locations" Relationship="Self.FK_Location_Business" FromRole="Business" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="Business_Details">
+          <Key>
+            <PropertyRef Name="Business_ID" />
+          </Key>
+          <Property Name="Business_ID" Type="Int32" Nullable="false" />
+          <Property Name="Business_Address" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Business_City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Business_State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Business_Org_Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Business_Is_Registered" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Business_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Business_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Business_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Business_Updated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Business" Relationship="Self.FK_Business_Details_Business" FromRole="Business_Details" ToRole="Business" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="Customer_ID" />
+          </Key>
+          <Property Name="Customer_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Customer_MobileNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Customer_DOB" Type="DateTime" Precision="3" />
+          <Property Name="Customer_EmailID" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_AltMobileNo" Type="String" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_Created_Loc_ID" Type="Int32" Nullable="false" />
+          <Property Name="Customer_CreatedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Customer_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Customer_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Customer_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Customer_Location" FromRole="Customer" ToRole="Location" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="Loc_ID" />
+          </Key>
+          <Property Name="Loc_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Business_ID" Type="Int32" Nullable="false" />
+          <Property Name="Loc_Code" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Loc_Region" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Loc_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Loc_Hotel_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Loc_Spa_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Loc_Address" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Loc_City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Loc_State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Loc_Country" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Loc_ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Loc_Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Loc_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Loc_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Loc_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Business" Relationship="Self.FK_Location_Business" FromRole="Location" ToRole="Business" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK_Customer_Location" FromRole="Location" ToRole="Customer" />
+          <NavigationProperty Name="LookUp_LocationRegion" Relationship="Self.FK_Location_LookUp_LocationRegion" FromRole="Location" ToRole="LookUp_LocationRegion" />
+          <NavigationProperty Name="Location_Tax" Relationship="Self.FK_Location_Tax_Location" FromRole="Location" ToRole="Location_Tax" />
+          <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Location" FromRole="Location" ToRole="Order" />
+          <NavigationProperty Name="Xref_Location_Service" Relationship="Self.FK_Xref_Location_Service_Location" FromRole="Location" ToRole="Xref_Location_Service" />
+          <NavigationProperty Name="Xref_Location_Therapist" Relationship="Self.FK_Xref_Location_Therapist_Location" FromRole="Location" ToRole="Xref_Location_Therapist" />
+        </EntityType>
+        <EntityType Name="Location_Tax">
+          <Key>
+            <PropertyRef Name="Location_Tax_ID" />
+          </Key>
+          <Property Name="Location_Tax_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Location_ID" Type="Int32" Nullable="false" />
+          <Property Name="Tax_ID" Type="Int32" Nullable="false" />
+          <Property Name="Tax_Value" Type="Decimal" Precision="5" Scale="2" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Location_Tax_Location" FromRole="Location_Tax" ToRole="Location" />
+          <NavigationProperty Name="Tax_Master" Relationship="Self.FK_Location_Tax_Tax_Master" FromRole="Location_Tax" ToRole="Tax_Master" />
+          <NavigationProperty Name="Orders" Relationship="Self.Order_Taxes" FromRole="Location_Tax" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="LookUp_Country">
+          <Key>
+            <PropertyRef Name="Country_ID" />
+          </Key>
+          <Property Name="Country_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="LookUp_State" Relationship="Self.FK_LookUp_State_LookUp_Country" FromRole="LookUp_Country" ToRole="LookUp_State" />
+          <NavigationProperty Name="Tax_Master" Relationship="Self.FK_Tax_Master_LookUp_Country" FromRole="LookUp_Country" ToRole="Tax_Master" />
+        </EntityType>
+        <EntityType Name="LookUp_LocationRegion">
+          <Key>
+            <PropertyRef Name="Region_Name" />
+          </Key>
+          <Property Name="Region_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Locations" Relationship="Self.FK_Location_LookUp_LocationRegion" FromRole="LookUp_LocationRegion" ToRole="Location" />
+        </EntityType>
+        <EntityType Name="LookUp_Payment_Mode">
+          <Key>
+            <PropertyRef Name="Payment_Mode_ID" />
+          </Key>
+          <Property Name="Payment_Mode_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Payment_Mode_Code" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Payment_Mode_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Order_Payment_Mode" Relationship="Self.FK_Order_Payment_Mode_LookUp_Payment_Mode" FromRole="LookUp_Payment_Mode" ToRole="Order_Payment_Mode" />
+        </EntityType>
+        <EntityType Name="LookUp_State">
+          <Key>
+            <PropertyRef Name="State_ID" />
+          </Key>
+          <Property Name="State_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country_ID" Type="Int32" Nullable="false" />
+          <Property Name="State_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="LookUp_Country" Relationship="Self.FK_LookUp_State_LookUp_Country" FromRole="LookUp_State" ToRole="LookUp_Country" />
+        </EntityType>
+        <EntityType Name="Order">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_ID" Type="Int32" Nullable="false" />
+          <Property Name="Order_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Order_Loc_ID" Type="Int32" Nullable="false" />
+          <Property Name="Order_Currency_Code" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Order_Gross_Amount" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Order_Net_Amount" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Voucher_Usage_ID" Type="Int32" />
+          <Property Name="Order_Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Order_Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Order_Updated_Dt" Type="DateTime" Precision="3" />
+          <Property Name="Order_Updated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK_Order_Customer" FromRole="Order" ToRole="Customer" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Order_Location" FromRole="Order" ToRole="Location" />
+          <NavigationProperty Name="Order_Payment_Mode" Relationship="Self.FK_Order_Payment_Mode_Order" FromRole="Order" ToRole="Order_Payment_Mode" />
+          <NavigationProperty Name="Purchase_Order" Relationship="Self.FK_Purchase_Order_Order" FromRole="Order" ToRole="Purchase_Order" />
+          <NavigationProperty Name="Voucher_Usage" Relationship="Self.FK_Voucher_Usage_Order" FromRole="Order" ToRole="Voucher_Usage" />
+          <NavigationProperty Name="Location_Tax" Relationship="Self.Order_Taxes" FromRole="Order" ToRole="Location_Tax" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Product_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Product_Name" Type="Binary" MaxLength="50" FixedLength="false" Nullable="false" />
+          <Property Name="Product_Weight" Type="Int32" />
+          <Property Name="Product_Weight_UOM" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Product_MRP" Type="Decimal" Precision="7" Scale="2" Nullable="false" />
+          <Property Name="Product_Balance_Qty" Type="Int32" />
+          <Property Name="Product_Min_Stock_Lvl" Type="Int32" />
+          <Property Name="Product_Vendor" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Product_MFG_Dt" Type="DateTime" Precision="3" />
+          <Property Name="Product_Expiry_Dt" Type="DateTime" Precision="3" />
+          <Property Name="Product_Barcode" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Product_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Product_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Product_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Product_Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Stock_Added" Relationship="Self.FK_Stock_Added_Product" FromRole="Product" ToRole="Stock_Added" />
+          <NavigationProperty Name="Treatment_Inventory_Usage" Relationship="Self.FK_Treatment_Inventory_Usage_Product" FromRole="Product" ToRole="Treatment_Inventory_Usage" />
+        </EntityType>
+        <EntityType Name="Service">
+          <Key>
+            <PropertyRef Name="Service_ID" />
+          </Key>
+          <Property Name="Service_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Service_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Service_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Service_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Service_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Service_Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Purchase_Order" Relationship="Self.FK_Purchase_Order_Service" FromRole="Service" ToRole="Purchase_Order" />
+          <NavigationProperty Name="Xref_Location_Service" Relationship="Self.FK_Xref_Location_Service_Service" FromRole="Service" ToRole="Xref_Location_Service" />
+          <NavigationProperty Name="Xref_Service_Treatment" Relationship="Self.FK_Xref_Service_Treatment_Service" FromRole="Service" ToRole="Xref_Service_Treatment" />
+        </EntityType>
+        <EntityType Name="sysdiagram">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Tax_Master">
+          <Key>
+            <PropertyRef Name="Tax_ID" />
+          </Key>
+          <Property Name="Tax_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Country_ID" Type="Int32" Nullable="false" />
+          <Property Name="Tax_Short_Name" Type="String" MaxLength="15" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Tax_Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Location_Tax" Relationship="Self.FK_Location_Tax_Tax_Master" FromRole="Tax_Master" ToRole="Location_Tax" />
+          <NavigationProperty Name="LookUp_Country" Relationship="Self.FK_Tax_Master_LookUp_Country" FromRole="Tax_Master" ToRole="LookUp_Country" />
+        </EntityType>
+        <EntityType Name="Therapist">
+          <Key>
+            <PropertyRef Name="Therapist_ID" />
+          </Key>
+          <Property Name="Therapist_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Therapist_FName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Therapist_LName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Therapist_Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Therapist_ContactNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Therapist_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Therapist_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Therapist_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Xref_Location_Therapist" Relationship="Self.FK_Xref_Location_Therapist_Therapist" FromRole="Therapist" ToRole="Xref_Location_Therapist" />
+        </EntityType>
+        <EntityType Name="Treatment">
+          <Key>
+            <PropertyRef Name="Treatment_ID" />
+          </Key>
+          <Property Name="Treatment_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Treatment_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Treatment_Description" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Treatment_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Treatment_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Treatment_Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Treatment_Inventory_Usage" Relationship="Self.FK_Treatment_Inventory_Usage_Treatment" FromRole="Treatment" ToRole="Treatment_Inventory_Usage" />
+          <NavigationProperty Name="Xref_Service_Treatment" Relationship="Self.FK_Xref_Service_Treatment_Treatment" FromRole="Treatment" ToRole="Xref_Service_Treatment" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="User_ID" />
+          </Key>
+          <Property Name="User_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Pwd" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Role" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="User_Fname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Lname" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="User_Is_Active" Type="String" MaxLength="1" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="User_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="User_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="UserRole" Relationship="Self.FK_User_UserRole" FromRole="User" ToRole="UserRole" />
+          <NavigationProperty Name="UserLogs" Relationship="Self.FK_UserLog_User" FromRole="User" ToRole="UserLog" />
+        </EntityType>
+        <EntityType Name="UserLog">
+          <Key>
+            <PropertyRef Name="User_Log_ID" />
+          </Key>
+          <Property Name="User_Log_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Log_TimeStamp" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Log_Comment" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="User" Relationship="Self.FK_UserLog_User" FromRole="UserLog" ToRole="User" />
+        </EntityType>
+        <EntityType Name="UserRole">
+          <Key>
+            <PropertyRef Name="Role_Name" />
+          </Key>
+          <Property Name="Role_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Comment" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_User_UserRole" FromRole="UserRole" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Voucher_Master">
+          <Key>
+            <PropertyRef Name="Voucher_ID" />
+          </Key>
+          <Property Name="Voucher_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Voucher_Amount" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Voucher_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Voucher_Expiry_Dt" Type="DateTime" Precision="3" />
+          <Property Name="Voucher_Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Voucher_Usage" Relationship="Self.FK_Voucher_Usage_Voucher_Master" FromRole="Voucher_Master" ToRole="Voucher_Usage" />
+        </EntityType>
+        <EntityType Name="Voucher_Usage">
+          <Key>
+            <PropertyRef Name="Voucher_Usage_ID" />
+          </Key>
+          <Property Name="Voucher_Usage_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Voucher_ID" Type="Int32" Nullable="false" />
+          <Property Name="Order_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Voucher_Usage_Order" FromRole="Voucher_Usage" ToRole="Order" />
+          <NavigationProperty Name="Voucher_Master" Relationship="Self.FK_Voucher_Usage_Voucher_Master" FromRole="Voucher_Usage" ToRole="Voucher_Master" />
+        </EntityType>
+        <EntityType Name="Xref_Location_Service">
+          <Key>
+            <PropertyRef Name="Location_Service_Xref_ID" />
+          </Key>
+          <Property Name="Location_Service_Xref_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Loc_ID" Type="Int32" Nullable="false" />
+          <Property Name="Service_ID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="7" Scale="2" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Xref_Location_Service_Location" FromRole="Xref_Location_Service" ToRole="Location" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Xref_Location_Service_Service" FromRole="Xref_Location_Service" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Xref_Location_Therapist">
+          <Key>
+            <PropertyRef Name="Loc_Ther_Xref_ID" />
+          </Key>
+          <Property Name="Loc_Ther_Xref_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Loc_ID" Type="Int32" Nullable="false" />
+          <Property Name="Therapist_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Location" Relationship="Self.FK_Xref_Location_Therapist_Location" FromRole="Xref_Location_Therapist" ToRole="Location" />
+          <NavigationProperty Name="Therapist" Relationship="Self.FK_Xref_Location_Therapist_Therapist" FromRole="Xref_Location_Therapist" ToRole="Therapist" />
+        </EntityType>
+        <EntityType Name="Xref_Service_Treatment">
+          <Key>
+            <PropertyRef Name="Service_Treatment_Xref_ID" />
+          </Key>
+          <Property Name="Service_Treatment_Xref_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Service_ID" Type="Int32" Nullable="false" />
+          <Property Name="Treatment_ID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Xref_Service_Treatment_Service" FromRole="Xref_Service_Treatment" ToRole="Service" />
+          <NavigationProperty Name="Treatment" Relationship="Self.FK_Xref_Service_Treatment_Treatment" FromRole="Xref_Service_Treatment" ToRole="Treatment" />
+        </EntityType>
+        <EntityType Name="Order_Payment_Mode">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+            <PropertyRef Name="Payment_Mode_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="Int32" Nullable="false" />
+          <Property Name="Payment_Mode_ID" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="LookUp_Payment_Mode" Relationship="Self.FK_Order_Payment_Mode_LookUp_Payment_Mode" FromRole="Order_Payment_Mode" ToRole="LookUp_Payment_Mode" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Order_Payment_Mode_Order" FromRole="Order_Payment_Mode" ToRole="Order" />
+        </EntityType>
+        <EntityType Name="Purchase_Order">
+          <Key>
+            <PropertyRef Name="Order_ID" />
+            <PropertyRef Name="Service_ID" />
+          </Key>
+          <Property Name="Order_ID" Type="Int32" Nullable="false" />
+          <Property Name="Service_ID" Type="Int32" Nullable="false" />
+          <Property Name="Service_Amount" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Service_Discount" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="Order" Relationship="Self.FK_Purchase_Order_Order" FromRole="Purchase_Order" ToRole="Order" />
+          <NavigationProperty Name="Service" Relationship="Self.FK_Purchase_Order_Service" FromRole="Purchase_Order" ToRole="Service" />
+        </EntityType>
+        <EntityType Name="Stock_Added">
+          <Key>
+            <PropertyRef Name="Product_ID" />
+            <PropertyRef Name="Added_Dt" />
+          </Key>
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Qty_Added" Type="Int32" />
+          <Property Name="Added_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Added_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Stock_Added_Product" FromRole="Stock_Added" ToRole="Product" />
+        </EntityType>
+        <EntityType Name="Treatment_Inventory_Usage">
+          <Key>
+            <PropertyRef Name="Treatment_ID" />
+            <PropertyRef Name="Product_ID" />
+          </Key>
+          <Property Name="Treatment_ID" Type="Int32" Nullable="false" />
+          <Property Name="Product_ID" Type="Int32" Nullable="false" />
+          <Property Name="Qty_Used" Type="Int32" />
+          <NavigationProperty Name="Product" Relationship="Self.FK_Treatment_Inventory_Usage_Product" FromRole="Treatment_Inventory_Usage" ToRole="Product" />
+          <NavigationProperty Name="Treatment" Relationship="Self.FK_Treatment_Inventory_Usage_Treatment" FromRole="Treatment_Inventory_Usage" ToRole="Treatment" />
+        </EntityType>
+        <Association Name="FK_Business_Details_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="1" />
+          <End Role="Business_Details" Type="Self.Business_Details" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="Business_ID" />
+            </Principal>
+            <Dependent Role="Business_Details">
+              <PropertyRef Name="Business_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="Business_ID" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="Business_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Customer" Type="Self.Customer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="Customer">
+              <PropertyRef Name="Customer_Created_Loc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_LookUp_LocationRegion">
+          <End Role="LookUp_LocationRegion" Type="Self.LookUp_LocationRegion" Multiplicity="1" />
+          <End Role="Location" Type="Self.Location" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookUp_LocationRegion">
+              <PropertyRef Name="Region_Name" />
+            </Principal>
+            <Dependent Role="Location">
+              <PropertyRef Name="Loc_Region" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Tax_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Location_Tax" Type="Self.Location_Tax" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="Location_Tax">
+              <PropertyRef Name="Location_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="Order">
+              <PropertyRef Name="Order_Loc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Location_Service_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Xref_Location_Service" Type="Self.Xref_Location_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="Xref_Location_Service">
+              <PropertyRef Name="Loc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Location_Therapist_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="Xref_Location_Therapist" Type="Self.Xref_Location_Therapist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="Xref_Location_Therapist">
+              <PropertyRef Name="Loc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Location_Tax_Tax_Master">
+          <End Role="Tax_Master" Type="Self.Tax_Master" Multiplicity="1" />
+          <End Role="Location_Tax" Type="Self.Location_Tax" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tax_Master">
+              <PropertyRef Name="Tax_ID" />
+            </Principal>
+            <Dependent Role="Location_Tax">
+              <PropertyRef Name="Tax_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_LookUp_State_LookUp_Country">
+          <End Role="LookUp_Country" Type="Self.LookUp_Country" Multiplicity="1" />
+          <End Role="LookUp_State" Type="Self.LookUp_State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookUp_Country">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="LookUp_State">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tax_Master_LookUp_Country">
+          <End Role="LookUp_Country" Type="Self.LookUp_Country" Multiplicity="1" />
+          <End Role="Tax_Master" Type="Self.Tax_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookUp_Country">
+              <PropertyRef Name="Country_ID" />
+            </Principal>
+            <Dependent Role="Tax_Master">
+              <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Payment_Mode_LookUp_Payment_Mode">
+          <End Role="LookUp_Payment_Mode" Type="Self.LookUp_Payment_Mode" Multiplicity="1" />
+          <End Role="Order_Payment_Mode" Type="Self.Order_Payment_Mode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="LookUp_Payment_Mode">
+              <PropertyRef Name="Payment_Mode_ID" />
+            </Principal>
+            <Dependent Role="Order_Payment_Mode">
+              <PropertyRef Name="Payment_Mode_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Order_Payment_Mode_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Order_Payment_Mode" Type="Self.Order_Payment_Mode" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Order_Payment_Mode">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voucher_Usage_Order">
+          <End Role="Order" Type="Self.Order" Multiplicity="1" />
+          <End Role="Voucher_Usage" Type="Self.Voucher_Usage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Order">
+              <PropertyRef Name="Order_ID" />
+            </Principal>
+            <Dependent Role="Voucher_Usage">
+              <PropertyRef Name="Order_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Stock_Added_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Stock_Added" Type="Self.Stock_Added" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Stock_Added">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Treatment_Inventory_Usage_Product">
+          <End Role="Product" Type="Self.Product" Multiplicity="1" />
+          <End Role="Treatment_Inventory_Usage" Type="Self.Treatment_Inventory_Usage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Product">
+              <PropertyRef Name="Product_ID" />
+            </Principal>
+            <Dependent Role="Treatment_Inventory_Usage">
+              <PropertyRef Name="Product_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Purchase_Order_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Purchase_Order" Type="Self.Purchase_Order" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Service_ID" />
+            </Principal>
+            <Dependent Role="Purchase_Order">
+              <PropertyRef Name="Service_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Location_Service_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Xref_Location_Service" Type="Self.Xref_Location_Service" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Service_ID" />
+            </Principal>
+            <Dependent Role="Xref_Location_Service">
+              <PropertyRef Name="Service_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Service_Treatment_Service">
+          <End Role="Service" Type="Self.Service" Multiplicity="1" />
+          <End Role="Xref_Service_Treatment" Type="Self.Xref_Service_Treatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Service">
+              <PropertyRef Name="Service_ID" />
+            </Principal>
+            <Dependent Role="Xref_Service_Treatment">
+              <PropertyRef Name="Service_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Location_Therapist_Therapist">
+          <End Role="Therapist" Type="Self.Therapist" Multiplicity="1" />
+          <End Role="Xref_Location_Therapist" Type="Self.Xref_Location_Therapist" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Therapist">
+              <PropertyRef Name="Therapist_ID" />
+            </Principal>
+            <Dependent Role="Xref_Location_Therapist">
+              <PropertyRef Name="Therapist_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Treatment_Inventory_Usage_Treatment">
+          <End Role="Treatment" Type="Self.Treatment" Multiplicity="1" />
+          <End Role="Treatment_Inventory_Usage" Type="Self.Treatment_Inventory_Usage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Treatment">
+              <PropertyRef Name="Treatment_ID" />
+            </Principal>
+            <Dependent Role="Treatment_Inventory_Usage">
+              <PropertyRef Name="Treatment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Xref_Service_Treatment_Treatment">
+          <End Role="Treatment" Type="Self.Treatment" Multiplicity="1" />
+          <End Role="Xref_Service_Treatment" Type="Self.Xref_Service_Treatment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Treatment">
+              <PropertyRef Name="Treatment_ID" />
+            </Principal>
+            <Dependent Role="Xref_Service_Treatment">
+              <PropertyRef Name="Treatment_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_UserRole">
+          <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserRole">
+              <PropertyRef Name="Role_Name" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserLog_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="UserLog" Type="Self.UserLog" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="UserLog">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voucher_Usage_Voucher_Master">
+          <End Role="Voucher_Master" Type="Self.Voucher_Master" Multiplicity="1" />
+          <End Role="Voucher_Usage" Type="Self.Voucher_Usage" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voucher_Master">
+              <PropertyRef Name="Voucher_ID" />
+            </Principal>
+            <Dependent Role="Voucher_Usage">
+              <PropertyRef Name="Voucher_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="Order_Taxes">
+          <End Role="Location_Tax" Type="Self.Location_Tax" Multiplicity="*" />
+          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="DevSpaEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Businesses" EntityType="Self.Business" />
+          <EntitySet Name="Business_Details" EntityType="Self.Business_Details" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="Locations" EntityType="Self.Location" />
+          <EntitySet Name="Location_Tax" EntityType="Self.Location_Tax" />
+          <EntitySet Name="LookUp_Country" EntityType="Self.LookUp_Country" />
+          <EntitySet Name="LookUp_LocationRegion" EntityType="Self.LookUp_LocationRegion" />
+          <EntitySet Name="LookUp_Payment_Mode" EntityType="Self.LookUp_Payment_Mode" />
+          <EntitySet Name="LookUp_State" EntityType="Self.LookUp_State" />
+          <EntitySet Name="Orders" EntityType="Self.Order" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="Services" EntityType="Self.Service" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagram" />
+          <EntitySet Name="Tax_Master" EntityType="Self.Tax_Master" />
+          <EntitySet Name="Therapists" EntityType="Self.Therapist" />
+          <EntitySet Name="Treatments" EntityType="Self.Treatment" />
+          <EntitySet Name="Users" EntityType="Self.User" />
+          <EntitySet Name="UserLogs" EntityType="Self.UserLog" />
+          <EntitySet Name="UserRoles" EntityType="Self.UserRole" />
+          <EntitySet Name="Voucher_Master" EntityType="Self.Voucher_Master" />
+          <EntitySet Name="Voucher_Usage" EntityType="Self.Voucher_Usage" />
+          <EntitySet Name="Xref_Location_Service" EntityType="Self.Xref_Location_Service" />
+          <EntitySet Name="Xref_Location_Therapist" EntityType="Self.Xref_Location_Therapist" />
+          <EntitySet Name="Xref_Service_Treatment" EntityType="Self.Xref_Service_Treatment" />
+          <EntitySet Name="Order_Payment_Mode" EntityType="Self.Order_Payment_Mode" />
+          <EntitySet Name="Purchase_Order" EntityType="Self.Purchase_Order" />
+          <EntitySet Name="Stock_Added" EntityType="Self.Stock_Added" />
+          <EntitySet Name="Treatment_Inventory_Usage" EntityType="Self.Treatment_Inventory_Usage" />
+          <AssociationSet Name="FK_Business_Details_Business" Association="Self.FK_Business_Details_Business">
+            <End Role="Business" EntitySet="Businesses" />
+            <End Role="Business_Details" EntitySet="Business_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Business" Association="Self.FK_Location_Business">
+            <End Role="Business" EntitySet="Businesses" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Location" Association="Self.FK_Customer_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Customer" EntitySet="Customers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_LookUp_LocationRegion" Association="Self.FK_Location_LookUp_LocationRegion">
+            <End Role="LookUp_LocationRegion" EntitySet="LookUp_LocationRegion" />
+            <End Role="Location" EntitySet="Locations" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Tax_Location" Association="Self.FK_Location_Tax_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Location_Tax" EntitySet="Location_Tax" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Location" Association="Self.FK_Order_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Location_Service_Location" Association="Self.FK_Xref_Location_Service_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Xref_Location_Service" EntitySet="Xref_Location_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Location_Therapist_Location" Association="Self.FK_Xref_Location_Therapist_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="Xref_Location_Therapist" EntitySet="Xref_Location_Therapist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Location_Tax_Tax_Master" Association="Self.FK_Location_Tax_Tax_Master">
+            <End Role="Tax_Master" EntitySet="Tax_Master" />
+            <End Role="Location_Tax" EntitySet="Location_Tax" />
+          </AssociationSet>
+          <AssociationSet Name="FK_LookUp_State_LookUp_Country" Association="Self.FK_LookUp_State_LookUp_Country">
+            <End Role="LookUp_Country" EntitySet="LookUp_Country" />
+            <End Role="LookUp_State" EntitySet="LookUp_State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tax_Master_LookUp_Country" Association="Self.FK_Tax_Master_LookUp_Country">
+            <End Role="LookUp_Country" EntitySet="LookUp_Country" />
+            <End Role="Tax_Master" EntitySet="Tax_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Payment_Mode_LookUp_Payment_Mode" Association="Self.FK_Order_Payment_Mode_LookUp_Payment_Mode">
+            <End Role="LookUp_Payment_Mode" EntitySet="LookUp_Payment_Mode" />
+            <End Role="Order_Payment_Mode" EntitySet="Order_Payment_Mode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Payment_Mode_Order" Association="Self.FK_Order_Payment_Mode_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Order_Payment_Mode" EntitySet="Order_Payment_Mode" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Order" Association="Self.FK_Purchase_Order_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voucher_Usage_Order" Association="Self.FK_Voucher_Usage_Order">
+            <End Role="Order" EntitySet="Orders" />
+            <End Role="Voucher_Usage" EntitySet="Voucher_Usage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Stock_Added_Product" Association="Self.FK_Stock_Added_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Stock_Added" EntitySet="Stock_Added" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Inventory_Usage_Product" Association="Self.FK_Treatment_Inventory_Usage_Product">
+            <End Role="Product" EntitySet="Products" />
+            <End Role="Treatment_Inventory_Usage" EntitySet="Treatment_Inventory_Usage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Purchase_Order_Service" Association="Self.FK_Purchase_Order_Service">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Purchase_Order" EntitySet="Purchase_Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Location_Service_Service" Association="Self.FK_Xref_Location_Service_Service">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Xref_Location_Service" EntitySet="Xref_Location_Service" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Service_Treatment_Service" Association="Self.FK_Xref_Service_Treatment_Service">
+            <End Role="Service" EntitySet="Services" />
+            <End Role="Xref_Service_Treatment" EntitySet="Xref_Service_Treatment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Location_Therapist_Therapist" Association="Self.FK_Xref_Location_Therapist_Therapist">
+            <End Role="Therapist" EntitySet="Therapists" />
+            <End Role="Xref_Location_Therapist" EntitySet="Xref_Location_Therapist" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Treatment_Inventory_Usage_Treatment" Association="Self.FK_Treatment_Inventory_Usage_Treatment">
+            <End Role="Treatment" EntitySet="Treatments" />
+            <End Role="Treatment_Inventory_Usage" EntitySet="Treatment_Inventory_Usage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Xref_Service_Treatment_Treatment" Association="Self.FK_Xref_Service_Treatment_Treatment">
+            <End Role="Treatment" EntitySet="Treatments" />
+            <End Role="Xref_Service_Treatment" EntitySet="Xref_Service_Treatment" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_UserRole" Association="Self.FK_User_UserRole">
+            <End Role="UserRole" EntitySet="UserRoles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserLog_User" Association="Self.FK_UserLog_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="UserLog" EntitySet="UserLogs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Voucher_Usage_Voucher_Master" Association="Self.FK_Voucher_Usage_Voucher_Master">
+            <End Role="Voucher_Master" EntitySet="Voucher_Master" />
+            <End Role="Voucher_Usage" EntitySet="Voucher_Usage" />
+          </AssociationSet>
+          <AssociationSet Name="Order_Taxes" Association="Self.Order_Taxes">
+            <End Role="Location_Tax" EntitySet="Location_Tax" />
+            <End Role="Order" EntitySet="Orders" />
+          </AssociationSet>
+          <FunctionImport Name="ADD_LOCATION">
+            <Parameter Name="Loc_Code" Mode="In" Type="String" />
+            <Parameter Name="Loc_Region" Mode="In" Type="String" />
+            <Parameter Name="Loc_Name" Mode="In" Type="String" />
+            <Parameter Name="Loc_Hotel_Name" Mode="In" Type="String" />
+            <Parameter Name="Loc_Spa_Name" Mode="In" Type="String" />
+            <Parameter Name="Loc_Address" Mode="In" Type="String" />
+            <Parameter Name="Loc_City" Mode="In" Type="String" />
+            <Parameter Name="Loc_State" Mode="In" Type="String" />
+            <Parameter Name="Loc_Country" Mode="In" Type="String" />
+            <Parameter Name="Loc_ContactNo" Mode="In" Type="String" />
+            <Parameter Name="Loc_Comment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="ADD_USER">
+            <Parameter Name="USER_ID" Mode="In" Type="String" />
+            <Parameter Name="PWD" Mode="In" Type="String" />
+            <Parameter Name="ROLE" Mode="In" Type="String" />
+            <Parameter Name="USER_FNAME" Mode="In" Type="String" />
+            <Parameter Name="USER_LNAME" Mode="In" Type="String" />
+            <Parameter Name="MSG" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="DELETE_LOCATION">
+            <Parameter Name="LOC_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GET_ALL_LOCATION" ReturnType="Collection(DevSpaModel.GET_ALL_LOCATION_Result)" />
+          <FunctionImport Name="GET_LOC_FOR_REGION" ReturnType="Collection(DevSpaModel.GET_LOC_FOR_REGION_Result)">
+            <Parameter Name="REGION_NAME" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="GET_LOCATION" ReturnType="Collection(DevSpaModel.GET_LOCATION_Result)">
+            <Parameter Name="LOC_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="GET_THERAPIST_FOR_LOC_ID" ReturnType="Collection(DevSpaModel.GET_THERAPIST_FOR_LOC_ID_Result)">
+            <Parameter Name="LOC_ID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="IS_VALID_USER">
+            <Parameter Name="USER_ID" Mode="In" Type="String" />
+            <Parameter Name="PWD" Mode="In" Type="String" />
+            <Parameter Name="IS_ACTIVE" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(DevSpaModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(DevSpaModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="UPDATE_LOCATION">
+            <Parameter Name="LOC_ID" Mode="In" Type="Int32" />
+            <Parameter Name="Loc_Code" Mode="In" Type="String" />
+            <Parameter Name="Loc_Region" Mode="In" Type="String" />
+            <Parameter Name="Loc_Name" Mode="In" Type="String" />
+            <Parameter Name="Loc_Hotel_Name" Mode="In" Type="String" />
+            <Parameter Name="Loc_Spa_Name" Mode="In" Type="String" />
+            <Parameter Name="Loc_Address" Mode="In" Type="String" />
+            <Parameter Name="Loc_City" Mode="In" Type="String" />
+            <Parameter Name="Loc_State" Mode="In" Type="String" />
+            <Parameter Name="Loc_Country" Mode="In" Type="String" />
+            <Parameter Name="Loc_ContactNo" Mode="In" Type="String" />
+            <Parameter Name="Loc_Comment" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USER_LOGGED_IN">
+            <Parameter Name="USER_ID" Mode="In" Type="String" />
+            <Parameter Name="PWD" Mode="In" Type="String" />
+            <Parameter Name="IS_VALID" Mode="InOut" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="USER_LOGGED_OUT">
+            <Parameter Name="USER_ID" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="GET_ALL_LOCATION_Result">
+          <Property Type="Int32" Name="Loc_ID" Nullable="false" />
+          <Property Type="String" Name="Loc_Code" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Loc_Region" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Loc_Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_Hotel_Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_Spa_Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_Address" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Loc_City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Loc_State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Loc_Country" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Loc_Comment" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="GET_LOC_FOR_REGION_Result">
+          <Property Type="Int32" Name="Loc_ID" Nullable="false" />
+          <Property Type="String" Name="Loc_Code" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Loc_Region" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Loc_Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_Hotel_Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_Spa_Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_Address" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Loc_City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Loc_State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Loc_Country" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Loc_Comment" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="GET_LOCATION_Result">
+          <Property Type="Int32" Name="Loc_ID" Nullable="false" />
+          <Property Type="String" Name="Loc_Code" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Loc_Region" Nullable="false" MaxLength="20" />
+          <Property Type="String" Name="Loc_Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_Hotel_Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_Spa_Name" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_Address" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="Loc_City" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Loc_State" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Loc_Country" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Loc_ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Loc_Comment" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="GET_THERAPIST_FOR_LOC_ID_Result">
+          <Property Type="Int32" Name="Therapist_ID" Nullable="false" />
+          <Property Type="String" Name="Therapist_FName" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Therapist_LName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Therapist_Gender" Nullable="false" MaxLength="1" />
+          <Property Type="String" Name="Therapist_ContactNo" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Therapist_Is_Active" Nullable="false" MaxLength="1" />
+          <Property Type="DateTime" Name="Therapist_Created_Dt" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="Therapist_Updated_Dt" Nullable="false" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DevSpaModelStoreContainer" CdmEntityContainer="DevSpaEntities">
+          <EntitySetMapping Name="Businesses">
+            <EntityTypeMapping TypeName="DevSpaModel.Business">
+              <MappingFragment StoreEntitySet="Business">
+                <ScalarProperty Name="Business_ID" ColumnName="Business_ID" />
+                <ScalarProperty Name="Business_Name" ColumnName="Business_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Business_Details">
+            <EntityTypeMapping TypeName="DevSpaModel.Business_Details">
+              <MappingFragment StoreEntitySet="Business_Details">
+                <ScalarProperty Name="Business_ID" ColumnName="Business_ID" />
+                <ScalarProperty Name="Business_Address" ColumnName="Business_Address" />
+                <ScalarProperty Name="Business_City" ColumnName="Business_City" />
+                <ScalarProperty Name="Business_State" ColumnName="Business_State" />
+                <ScalarProperty Name="Business_Org_Country" ColumnName="Business_Org_Country" />
+                <ScalarProperty Name="Business_Is_Registered" ColumnName="Business_Is_Registered" />
+                <ScalarProperty Name="Business_Description" ColumnName="Business_Description" />
+                <ScalarProperty Name="Business_Created_Dt" ColumnName="Business_Created_Dt" />
+                <ScalarProperty Name="Business_Updated_Dt" ColumnName="Business_Updated_Dt" />
+                <ScalarProperty Name="Business_Updated_By" ColumnName="Business_Updated_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="DevSpaModel.Customer">
+              <MappingFragment StoreEntitySet="Customer">
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Customer_Fname" ColumnName="Customer_Fname" />
+                <ScalarProperty Name="Customer_Lname" ColumnName="Customer_Lname" />
+                <ScalarProperty Name="Customer_Gender" ColumnName="Customer_Gender" />
+                <ScalarProperty Name="Customer_MobileNo" ColumnName="Customer_MobileNo" />
+                <ScalarProperty Name="Customer_DOB" ColumnName="Customer_DOB" />
+                <ScalarProperty Name="Customer_EmailID" ColumnName="Customer_EmailID" />
+                <ScalarProperty Name="Customer_AltMobileNo" ColumnName="Customer_AltMobileNo" />
+                <ScalarProperty Name="Customer_Created_Loc_ID" ColumnName="Customer_Created_Loc_ID" />
+                <ScalarProperty Name="Customer_CreatedBy" ColumnName="Customer_CreatedBy" />
+                <ScalarProperty Name="Customer_Is_Active" ColumnName="Customer_Is_Active" />
+                <ScalarProperty Name="Customer_Created_Dt" ColumnName="Customer_Created_Dt" />
+                <ScalarProperty Name="Customer_Updated_Dt" ColumnName="Customer_Updated_Dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Locations">
+            <EntityTypeMapping TypeName="DevSpaModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="Loc_ID" ColumnName="Loc_ID" />
+                <ScalarProperty Name="Business_ID" ColumnName="Business_ID" />
+                <ScalarProperty Name="Loc_Code" ColumnName="Loc_Code" />
+                <ScalarProperty Name="Loc_Region" ColumnName="Loc_Region" />
+                <ScalarProperty Name="Loc_Name" ColumnName="Loc_Name" />
+                <ScalarProperty Name="Loc_Hotel_Name" ColumnName="Loc_Hotel_Name" />
+                <ScalarProperty Name="Loc_Spa_Name" ColumnName="Loc_Spa_Name" />
+                <ScalarProperty Name="Loc_Address" ColumnName="Loc_Address" />
+                <ScalarProperty Name="Loc_City" ColumnName="Loc_City" />
+                <ScalarProperty Name="Loc_State" ColumnName="Loc_State" />
+                <ScalarProperty Name="Loc_Country" ColumnName="Loc_Country" />
+                <ScalarProperty Name="Loc_ContactNo" ColumnName="Loc_ContactNo" />
+                <ScalarProperty Name="Loc_Comment" ColumnName="Loc_Comment" />
+                <ScalarProperty Name="Loc_Is_Active" ColumnName="Loc_Is_Active" />
+                <ScalarProperty Name="Loc_Created_Dt" ColumnName="Loc_Created_Dt" />
+                <ScalarProperty Name="Loc_Updated_Dt" ColumnName="Loc_Updated_Dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Location_Tax">
+            <EntityTypeMapping TypeName="DevSpaModel.Location_Tax">
+              <MappingFragment StoreEntitySet="Location_Tax">
+                <ScalarProperty Name="Location_Tax_ID" ColumnName="Location_Tax_ID" />
+                <ScalarProperty Name="Location_ID" ColumnName="Location_ID" />
+                <ScalarProperty Name="Tax_ID" ColumnName="Tax_ID" />
+                <ScalarProperty Name="Tax_Value" ColumnName="Tax_Value" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookUp_Country">
+            <EntityTypeMapping TypeName="DevSpaModel.LookUp_Country">
+              <MappingFragment StoreEntitySet="LookUp_Country">
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Country_Name" ColumnName="Country_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookUp_LocationRegion">
+            <EntityTypeMapping TypeName="DevSpaModel.LookUp_LocationRegion">
+              <MappingFragment StoreEntitySet="LookUp_LocationRegion">
+                <ScalarProperty Name="Region_Name" ColumnName="Region_Name" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookUp_Payment_Mode">
+            <EntityTypeMapping TypeName="DevSpaModel.LookUp_Payment_Mode">
+              <MappingFragment StoreEntitySet="LookUp_Payment_Mode">
+                <ScalarProperty Name="Payment_Mode_ID" ColumnName="Payment_Mode_ID" />
+                <ScalarProperty Name="Payment_Mode_Code" ColumnName="Payment_Mode_Code" />
+                <ScalarProperty Name="Payment_Mode_Description" ColumnName="Payment_Mode_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LookUp_State">
+            <EntityTypeMapping TypeName="DevSpaModel.LookUp_State">
+              <MappingFragment StoreEntitySet="LookUp_State">
+                <ScalarProperty Name="State_ID" ColumnName="State_ID" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="State_Name" ColumnName="State_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Orders">
+            <EntityTypeMapping TypeName="DevSpaModel.Order">
+              <MappingFragment StoreEntitySet="Order">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Order_Dt" ColumnName="Order_Dt" />
+                <ScalarProperty Name="Order_Loc_ID" ColumnName="Order_Loc_ID" />
+                <ScalarProperty Name="Order_Currency_Code" ColumnName="Order_Currency_Code" />
+                <ScalarProperty Name="Order_Gross_Amount" ColumnName="Order_Gross_Amount" />
+                <ScalarProperty Name="Order_Net_Amount" ColumnName="Order_Net_Amount" />
+                <ScalarProperty Name="Voucher_Usage_ID" ColumnName="Voucher_Usage_ID" />
+                <ScalarProperty Name="Order_Comments" ColumnName="Order_Comments" />
+                <ScalarProperty Name="Order_Created_By" ColumnName="Order_Created_By" />
+                <ScalarProperty Name="Order_Updated_Dt" ColumnName="Order_Updated_Dt" />
+                <ScalarProperty Name="Order_Updated_By" ColumnName="Order_Updated_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="DevSpaModel.Product">
+              <MappingFragment StoreEntitySet="Product">
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="Product_Name" ColumnName="Product_Name" />
+                <ScalarProperty Name="Product_Weight" ColumnName="Product_Weight" />
+                <ScalarProperty Name="Product_Weight_UOM" ColumnName="Product_Weight_UOM" />
+                <ScalarProperty Name="Product_MRP" ColumnName="Product_MRP" />
+                <ScalarProperty Name="Product_Balance_Qty" ColumnName="Product_Balance_Qty" />
+                <ScalarProperty Name="Product_Min_Stock_Lvl" ColumnName="Product_Min_Stock_Lvl" />
+                <ScalarProperty Name="Product_Vendor" ColumnName="Product_Vendor" />
+                <ScalarProperty Name="Product_MFG_Dt" ColumnName="Product_MFG_Dt" />
+                <ScalarProperty Name="Product_Expiry_Dt" ColumnName="Product_Expiry_Dt" />
+                <ScalarProperty Name="Product_Barcode" ColumnName="Product_Barcode" />
+                <ScalarProperty Name="Product_Description" ColumnName="Product_Description" />
+                <ScalarProperty Name="Product_Created_Dt" ColumnName="Product_Created_Dt" />
+                <ScalarProperty Name="Product_Updated_Dt" ColumnName="Product_Updated_Dt" />
+                <ScalarProperty Name="Product_Created_By" ColumnName="Product_Created_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Services">
+            <EntityTypeMapping TypeName="DevSpaModel.Service">
+              <MappingFragment StoreEntitySet="Service">
+                <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
+                <ScalarProperty Name="Service_Name" ColumnName="Service_Name" />
+                <ScalarProperty Name="Service_Description" ColumnName="Service_Description" />
+                <ScalarProperty Name="Service_Created_Dt" ColumnName="Service_Created_Dt" />
+                <ScalarProperty Name="Service_Updated_Dt" ColumnName="Service_Updated_Dt" />
+                <ScalarProperty Name="Service_Created_By" ColumnName="Service_Created_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="DevSpaModel.sysdiagram">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tax_Master">
+            <EntityTypeMapping TypeName="DevSpaModel.Tax_Master">
+              <MappingFragment StoreEntitySet="Tax_Master">
+                <ScalarProperty Name="Tax_ID" ColumnName="Tax_ID" />
+                <ScalarProperty Name="Country_ID" ColumnName="Country_ID" />
+                <ScalarProperty Name="Tax_Short_Name" ColumnName="Tax_Short_Name" />
+                <ScalarProperty Name="Tax_Description" ColumnName="Tax_Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Therapists">
+            <EntityTypeMapping TypeName="DevSpaModel.Therapist">
+              <MappingFragment StoreEntitySet="Therapist">
+                <ScalarProperty Name="Therapist_ID" ColumnName="Therapist_ID" />
+                <ScalarProperty Name="Therapist_FName" ColumnName="Therapist_FName" />
+                <ScalarProperty Name="Therapist_LName" ColumnName="Therapist_LName" />
+                <ScalarProperty Name="Therapist_Gender" ColumnName="Therapist_Gender" />
+                <ScalarProperty Name="Therapist_ContactNo" ColumnName="Therapist_ContactNo" />
+                <ScalarProperty Name="Therapist_Is_Active" ColumnName="Therapist_Is_Active" />
+                <ScalarProperty Name="Therapist_Created_Dt" ColumnName="Therapist_Created_Dt" />
+                <ScalarProperty Name="Therapist_Updated_Dt" ColumnName="Therapist_Updated_Dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Treatments">
+            <EntityTypeMapping TypeName="DevSpaModel.Treatment">
+              <MappingFragment StoreEntitySet="Treatment">
+                <ScalarProperty Name="Treatment_ID" ColumnName="Treatment_ID" />
+                <ScalarProperty Name="Treatment_Name" ColumnName="Treatment_Name" />
+                <ScalarProperty Name="Treatment_Description" ColumnName="Treatment_Description" />
+                <ScalarProperty Name="Treatment_Created_Dt" ColumnName="Treatment_Created_Dt" />
+                <ScalarProperty Name="Treatment_Updated_Dt" ColumnName="Treatment_Updated_Dt" />
+                <ScalarProperty Name="Treatment_Created_By" ColumnName="Treatment_Created_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="DevSpaModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Pwd" ColumnName="Pwd" />
+                <ScalarProperty Name="Role" ColumnName="Role" />
+                <ScalarProperty Name="User_Fname" ColumnName="User_Fname" />
+                <ScalarProperty Name="User_Lname" ColumnName="User_Lname" />
+                <ScalarProperty Name="User_Is_Active" ColumnName="User_Is_Active" />
+                <ScalarProperty Name="User_Created_Dt" ColumnName="User_Created_Dt" />
+                <ScalarProperty Name="User_Updated_Dt" ColumnName="User_Updated_Dt" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserLogs">
+            <EntityTypeMapping TypeName="DevSpaModel.UserLog">
+              <MappingFragment StoreEntitySet="UserLog">
+                <ScalarProperty Name="User_Log_ID" ColumnName="User_Log_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="Log_TimeStamp" ColumnName="Log_TimeStamp" />
+                <ScalarProperty Name="Log_Comment" ColumnName="Log_Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoles">
+            <EntityTypeMapping TypeName="DevSpaModel.UserRole">
+              <MappingFragment StoreEntitySet="UserRole">
+                <ScalarProperty Name="Role_Name" ColumnName="Role_Name" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voucher_Master">
+            <EntityTypeMapping TypeName="DevSpaModel.Voucher_Master">
+              <MappingFragment StoreEntitySet="Voucher_Master">
+                <ScalarProperty Name="Voucher_ID" ColumnName="Voucher_ID" />
+                <ScalarProperty Name="Voucher_Amount" ColumnName="Voucher_Amount" />
+                <ScalarProperty Name="Voucher_Created_Dt" ColumnName="Voucher_Created_Dt" />
+                <ScalarProperty Name="Voucher_Expiry_Dt" ColumnName="Voucher_Expiry_Dt" />
+                <ScalarProperty Name="Voucher_Created_By" ColumnName="Voucher_Created_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Voucher_Usage">
+            <EntityTypeMapping TypeName="DevSpaModel.Voucher_Usage">
+              <MappingFragment StoreEntitySet="Voucher_Usage">
+                <ScalarProperty Name="Voucher_Usage_ID" ColumnName="Voucher_Usage_ID" />
+                <ScalarProperty Name="Voucher_ID" ColumnName="Voucher_ID" />
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Xref_Location_Service">
+            <EntityTypeMapping TypeName="DevSpaModel.Xref_Location_Service">
+              <MappingFragment StoreEntitySet="Xref_Location_Service">
+                <ScalarProperty Name="Location_Service_Xref_ID" ColumnName="Location_Service_Xref_ID" />
+                <ScalarProperty Name="Loc_ID" ColumnName="Loc_ID" />
+                <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Xref_Location_Therapist">
+            <EntityTypeMapping TypeName="DevSpaModel.Xref_Location_Therapist">
+              <MappingFragment StoreEntitySet="Xref_Location_Therapist">
+                <ScalarProperty Name="Loc_Ther_Xref_ID" ColumnName="Loc_Ther_Xref_ID" />
+                <ScalarProperty Name="Loc_ID" ColumnName="Loc_ID" />
+                <ScalarProperty Name="Therapist_ID" ColumnName="Therapist_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Xref_Service_Treatment">
+            <EntityTypeMapping TypeName="DevSpaModel.Xref_Service_Treatment">
+              <MappingFragment StoreEntitySet="Xref_Service_Treatment">
+                <ScalarProperty Name="Service_Treatment_Xref_ID" ColumnName="Service_Treatment_Xref_ID" />
+                <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
+                <ScalarProperty Name="Treatment_ID" ColumnName="Treatment_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Order_Payment_Mode">
+            <EntityTypeMapping TypeName="DevSpaModel.Order_Payment_Mode">
+              <MappingFragment StoreEntitySet="Order_Payment_Mode">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Payment_Mode_ID" ColumnName="Payment_Mode_ID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Purchase_Order">
+            <EntityTypeMapping TypeName="DevSpaModel.Purchase_Order">
+              <MappingFragment StoreEntitySet="Purchase_Order">
+                <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+                <ScalarProperty Name="Service_ID" ColumnName="Service_ID" />
+                <ScalarProperty Name="Service_Amount" ColumnName="Service_Amount" />
+                <ScalarProperty Name="Service_Discount" ColumnName="Service_Discount" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Stock_Added">
+            <EntityTypeMapping TypeName="DevSpaModel.Stock_Added">
+              <MappingFragment StoreEntitySet="Stock_Added">
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="Qty_Added" ColumnName="Qty_Added" />
+                <ScalarProperty Name="Added_Dt" ColumnName="Added_Dt" />
+                <ScalarProperty Name="Added_By" ColumnName="Added_By" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Treatment_Inventory_Usage">
+            <EntityTypeMapping TypeName="DevSpaModel.Treatment_Inventory_Usage">
+              <MappingFragment StoreEntitySet="Treatment_Inventory_Usage">
+                <ScalarProperty Name="Treatment_ID" ColumnName="Treatment_ID" />
+                <ScalarProperty Name="Product_ID" ColumnName="Product_ID" />
+                <ScalarProperty Name="Qty_Used" ColumnName="Qty_Used" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="Order_Taxes" TypeName="DevSpaModel.Order_Taxes" StoreEntitySet="Order_Taxes">
+            <EndProperty Name="Location_Tax">
+              <ScalarProperty Name="Location_Tax_ID" ColumnName="Location_Tax_ID" />
+            </EndProperty>
+            <EndProperty Name="Order">
+              <ScalarProperty Name="Order_ID" ColumnName="Order_ID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="ADD_LOCATION" FunctionName="DevSpaModel.Store.ADD_LOCATION" />
+          <FunctionImportMapping FunctionImportName="ADD_USER" FunctionName="DevSpaModel.Store.ADD_USER" />
+          <FunctionImportMapping FunctionImportName="DELETE_LOCATION" FunctionName="DevSpaModel.Store.DELETE_LOCATION" />
+          <FunctionImportMapping FunctionImportName="GET_ALL_LOCATION" FunctionName="DevSpaModel.Store.GET_ALL_LOCATION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSpaModel.GET_ALL_LOCATION_Result">
+                <ScalarProperty Name="Loc_ID" ColumnName="Loc_ID" />
+                <ScalarProperty Name="Loc_Code" ColumnName="Loc_Code" />
+                <ScalarProperty Name="Loc_Region" ColumnName="Loc_Region" />
+                <ScalarProperty Name="Loc_Name" ColumnName="Loc_Name" />
+                <ScalarProperty Name="Loc_Hotel_Name" ColumnName="Loc_Hotel_Name" />
+                <ScalarProperty Name="Loc_Spa_Name" ColumnName="Loc_Spa_Name" />
+                <ScalarProperty Name="Loc_Address" ColumnName="Loc_Address" />
+                <ScalarProperty Name="Loc_City" ColumnName="Loc_City" />
+                <ScalarProperty Name="Loc_State" ColumnName="Loc_State" />
+                <ScalarProperty Name="Loc_Country" ColumnName="Loc_Country" />
+                <ScalarProperty Name="Loc_ContactNo" ColumnName="Loc_ContactNo" />
+                <ScalarProperty Name="Loc_Comment" ColumnName="Loc_Comment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LOC_FOR_REGION" FunctionName="DevSpaModel.Store.GET_LOC_FOR_REGION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSpaModel.GET_LOC_FOR_REGION_Result">
+                <ScalarProperty Name="Loc_ID" ColumnName="Loc_ID" />
+                <ScalarProperty Name="Loc_Code" ColumnName="Loc_Code" />
+                <ScalarProperty Name="Loc_Region" ColumnName="Loc_Region" />
+                <ScalarProperty Name="Loc_Name" ColumnName="Loc_Name" />
+                <ScalarProperty Name="Loc_Hotel_Name" ColumnName="Loc_Hotel_Name" />
+                <ScalarProperty Name="Loc_Spa_Name" ColumnName="Loc_Spa_Name" />
+                <ScalarProperty Name="Loc_Address" ColumnName="Loc_Address" />
+                <ScalarProperty Name="Loc_City" ColumnName="Loc_City" />
+                <ScalarProperty Name="Loc_State" ColumnName="Loc_State" />
+                <ScalarProperty Name="Loc_Country" ColumnName="Loc_Country" />
+                <ScalarProperty Name="Loc_ContactNo" ColumnName="Loc_ContactNo" />
+                <ScalarProperty Name="Loc_Comment" ColumnName="Loc_Comment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_LOCATION" FunctionName="DevSpaModel.Store.GET_LOCATION">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSpaModel.GET_LOCATION_Result">
+                <ScalarProperty Name="Loc_ID" ColumnName="Loc_ID" />
+                <ScalarProperty Name="Loc_Code" ColumnName="Loc_Code" />
+                <ScalarProperty Name="Loc_Region" ColumnName="Loc_Region" />
+                <ScalarProperty Name="Loc_Name" ColumnName="Loc_Name" />
+                <ScalarProperty Name="Loc_Hotel_Name" ColumnName="Loc_Hotel_Name" />
+                <ScalarProperty Name="Loc_Spa_Name" ColumnName="Loc_Spa_Name" />
+                <ScalarProperty Name="Loc_Address" ColumnName="Loc_Address" />
+                <ScalarProperty Name="Loc_City" ColumnName="Loc_City" />
+                <ScalarProperty Name="Loc_State" ColumnName="Loc_State" />
+                <ScalarProperty Name="Loc_Country" ColumnName="Loc_Country" />
+                <ScalarProperty Name="Loc_ContactNo" ColumnName="Loc_ContactNo" />
+                <ScalarProperty Name="Loc_Comment" ColumnName="Loc_Comment" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="GET_THERAPIST_FOR_LOC_ID" FunctionName="DevSpaModel.Store.GET_THERAPIST_FOR_LOC_ID">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSpaModel.GET_THERAPIST_FOR_LOC_ID_Result">
+                <ScalarProperty Name="Therapist_ID" ColumnName="Therapist_ID" />
+                <ScalarProperty Name="Therapist_FName" ColumnName="Therapist_FName" />
+                <ScalarProperty Name="Therapist_LName" ColumnName="Therapist_LName" />
+                <ScalarProperty Name="Therapist_Gender" ColumnName="Therapist_Gender" />
+                <ScalarProperty Name="Therapist_ContactNo" ColumnName="Therapist_ContactNo" />
+                <ScalarProperty Name="Therapist_Is_Active" ColumnName="Therapist_Is_Active" />
+                <ScalarProperty Name="Therapist_Created_Dt" ColumnName="Therapist_Created_Dt" />
+                <ScalarProperty Name="Therapist_Updated_Dt" ColumnName="Therapist_Updated_Dt" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="IS_VALID_USER" FunctionName="DevSpaModel.Store.IS_VALID_USER" />
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="DevSpaModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="DevSpaModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="DevSpaModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="DevSpaModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSpaModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="DevSpaModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DevSpaModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="DevSpaModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="DevSpaModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="UPDATE_LOCATION" FunctionName="DevSpaModel.Store.UPDATE_LOCATION" />
+          <FunctionImportMapping FunctionImportName="USER_LOGGED_IN" FunctionName="DevSpaModel.Store.USER_LOGGED_IN" />
+          <FunctionImportMapping FunctionImportName="USER_LOGGED_OUT" FunctionName="DevSpaModel.Store.USER_LOGGED_OUT" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
