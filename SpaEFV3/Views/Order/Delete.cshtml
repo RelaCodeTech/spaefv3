@@ -1,0 +1,112 @@
+﻿@model SpaEFV3.Models.Order
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Order</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order_Dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Currency_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order_Currency_Code)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Gross_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order_Gross_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Net_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order_Net_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voucher_Usage_ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voucher_Usage_ID)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Comments)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order_Comments)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Created_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order_Created_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Updated_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order_Updated_Dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Order_Updated_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Order_Updated_By)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer.Customer_Fname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Customer.Customer_Fname)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Location.Loc_Code)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Location.Loc_Code)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

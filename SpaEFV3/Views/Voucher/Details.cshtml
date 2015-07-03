@@ -1,0 +1,50 @@
+﻿@model SpaEFV3.Models.Voucher_Master
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Voucher_Master</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Voucher_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voucher_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voucher_Created_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voucher_Created_Dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voucher_Expiry_Dt)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voucher_Expiry_Dt)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Voucher_Created_By)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Voucher_Created_By)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Voucher_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

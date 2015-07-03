@@ -1,0 +1,99 @@
+﻿@model IEnumerable<SpaEFV3.Models.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_Dt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_Currency_Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_Gross_Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_Net_Amount)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voucher_Usage_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_Comments)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.Order_Created_By)
+        </th>*@
+        @*<th>
+            @Html.DisplayNameFor(model => model.Order_Updated_Dt)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Order_Updated_By)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Customer.Customer_Fname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Location.Loc_Code)
+        </th>
+        <th>Actions</th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_Dt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_Currency_Code)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_Gross_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_Net_Amount)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voucher_Usage_ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_Comments)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.Order_Created_By)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_Updated_Dt)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Order_Updated_By)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Customer.Customer_Fname)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Location.Loc_Code)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Order_ID }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Order_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Order_ID })
+        </td>
+    </tr>
+}
+
+</table>
