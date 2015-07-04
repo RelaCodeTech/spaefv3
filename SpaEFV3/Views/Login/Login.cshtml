@@ -1,0 +1,26 @@
+﻿@{
+    ViewBag.Title = "Login";
+}
+
+<h2>Login to the system</h2>
+
+@using (Html.BeginForm())
+{
+    if (!String.IsNullOrEmpty(ViewBag.LoginFailedMsg) && this.IsPost)
+    {
+        <div> @ViewBag.LoginFailedMsg </div>
+    }
+
+    <div>@Html.Label("Login ID* :")</div>
+    <div>@Html.TextBox("UserID")</div>
+
+    <div>@Html.Label("Password* : ")</div>
+    <div>@Html.TextBox("Pwd")</div>
+
+    <br />
+    <div><input type="submit" value="Login" /></div>
+
+    <br />
+    <div>Not a registered user? @Html.ActionLink("Signup", "Signup", "Login")</div>
+}
+

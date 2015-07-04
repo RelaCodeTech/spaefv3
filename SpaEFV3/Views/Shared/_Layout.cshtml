@@ -1,30 +1,69 @@
 ﻿<!DOCTYPE html>
 <html>
+
+@{
+    ViewBag.LoggedInUser = Session["LoggedInUser"];
+}
+
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
+
+
+    @*Site Stylesheet*@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
-    <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+
+    @*Local JQuery reference*@
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.confirm.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+
+    @*Local Bootstrap reference - Commented as of now*@
+    @*<link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+        <script src="~/Scripts/bootstrap.min.js"></script>*@
+
+    @*Online Bootstrap reference*@
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    @*LOCAL FILES
+        <!-- jQuery -->
+        <script type="text/javascript" charset="utf8" src="~/Scripts/jquery.js"></script>
+        <!-- DataTables CSS -->
+        <link rel="stylesheet" type="text/css" href="~/Content/jquery.dataTables.css">
+        <!-- DataTables -->
+        <script type="text/javascript" charset="utf8" src="~/Scripts/jquery.dataTables.js"></script>*@
+
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
+
+    <!-- DataTables -->
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
+
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("My App", "Index", "Home", null, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                </ul>
-            </div>
-        </div>
-    </div>
+    
+    @{
+      
+        
+        //If user is not a site user - display general menu along with Login link
+        if (Session["LoggedInUser"] == null || String.IsNullOrEmpty(Session["LoggedInUser"].ToString()))
+        {
+            @Html.Partial("_LayoutForSiteVisitor");
+        }
+        else
+        {
+            @Html.Partial("_LayoutForUserGeneral");
+        }
+    }
 
     <div class="container body-content">
         @RenderBody()
