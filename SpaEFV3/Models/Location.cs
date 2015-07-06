@@ -21,6 +21,7 @@ namespace SpaEFV3.Models
             this.Orders = new HashSet<Order>();
             this.Xref_Location_Service = new HashSet<Xref_Location_Service>();
             this.Xref_Location_Therapist = new HashSet<Xref_Location_Therapist>();
+            this.User_Location_Access = new HashSet<User_Location_Access>();
         }
     
         public int Loc_ID { get; set; }
@@ -47,5 +48,6 @@ namespace SpaEFV3.Models
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Xref_Location_Service> Xref_Location_Service { get; set; }
         public virtual ICollection<Xref_Location_Therapist> Xref_Location_Therapist { get; set; }
+        public virtual ICollection<User_Location_Access> User_Location_Access { get; set; }
     }
 }

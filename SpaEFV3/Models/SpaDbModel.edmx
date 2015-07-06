@@ -263,6 +263,15 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <Property Name="User_Created_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="User_Updated_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="User_Location_Access">
+          <Key>
+            <PropertyRef Name="User_Loc_Access_ID" />
+          </Key>
+          <Property Name="User_Loc_Access_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="User_ID" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Loc_ID" Type="int" Nullable="false" />
+          <Property Name="Permissions" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="UserLog">
           <Key>
             <PropertyRef Name="User_Log_ID" />
@@ -550,6 +559,30 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Location_Access_Location">
+          <End Role="Location" Type="Self.Location" Multiplicity="1" />
+          <End Role="User_Location_Access" Type="Self.User_Location_Access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="User_Location_Access">
+              <PropertyRef Name="Loc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Location_Access_User">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="User_Location_Access" Type="Self.User_Location_Access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="User_Location_Access">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_UserRole">
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="1" />
           <End Role="User" Type="Self.User" Multiplicity="*" />
@@ -781,6 +814,7 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <EntitySet Name="Treatment" EntityType="Self.Treatment" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Treatment_Inventory_Usage" EntityType="Self.Treatment_Inventory_Usage" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User_Location_Access" EntityType="Self.User_Location_Access" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserLog" EntityType="Self.UserLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="UserRole" EntityType="Self.UserRole" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voucher_Master" EntityType="Self.Voucher_Master" Schema="dbo" store:Type="Tables" />
@@ -892,6 +926,14 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <AssociationSet Name="FK_Treatment_Inventory_Usage_Treatment" Association="Self.FK_Treatment_Inventory_Usage_Treatment">
             <End Role="Treatment" EntitySet="Treatment" />
             <End Role="Treatment_Inventory_Usage" EntitySet="Treatment_Inventory_Usage" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Location_Access_Location" Association="Self.FK_User_Location_Access_Location">
+            <End Role="Location" EntitySet="Location" />
+            <End Role="User_Location_Access" EntitySet="User_Location_Access" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Location_Access_User" Association="Self.FK_User_Location_Access_User">
+            <End Role="User" EntitySet="User" />
+            <End Role="User_Location_Access" EntitySet="User_Location_Access" />
           </AssociationSet>
           <AssociationSet Name="FK_User_UserRole" Association="Self.FK_User_UserRole">
             <End Role="UserRole" EntitySet="UserRole" />
@@ -1010,6 +1052,7 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Location" FromRole="Location" ToRole="Order" />
           <NavigationProperty Name="Xref_Location_Service" Relationship="Self.FK_Xref_Location_Service_Location" FromRole="Location" ToRole="Xref_Location_Service" />
           <NavigationProperty Name="Xref_Location_Therapist" Relationship="Self.FK_Xref_Location_Therapist_Location" FromRole="Location" ToRole="Xref_Location_Therapist" />
+          <NavigationProperty Name="User_Location_Access" Relationship="DevSpaModel.FK_User_Location_Access_Location" FromRole="Location" ToRole="User_Location_Access" />
         </EntityType>
         <EntityType Name="Location_Tax">
           <Key>
@@ -1179,6 +1222,7 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <Property Name="User_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="UserRole" Relationship="Self.FK_User_UserRole" FromRole="User" ToRole="UserRole" />
           <NavigationProperty Name="UserLogs" Relationship="Self.FK_UserLog_User" FromRole="User" ToRole="UserLog" />
+          <NavigationProperty Name="User_Location_Access" Relationship="DevSpaModel.FK_User_Location_Access_User" FromRole="User" ToRole="User_Location_Access" />
         </EntityType>
         <EntityType Name="UserLog">
           <Key>
@@ -1855,6 +1899,15 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <FunctionImport Name="USER_LOGGED_OUT">
           <Parameter Name="USER_ID" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="User_Location_Access" EntityType="DevSpaModel.User_Location_Access" />
+          <AssociationSet Name="FK_User_Location_Access_Location" Association="DevSpaModel.FK_User_Location_Access_Location">
+            <End Role="Location" EntitySet="Locations" />
+            <End Role="User_Location_Access" EntitySet="User_Location_Access" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Location_Access_User" Association="DevSpaModel.FK_User_Location_Access_User">
+            <End Role="User" EntitySet="Users" />
+            <End Role="User_Location_Access" EntitySet="User_Location_Access" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="GET_ALL_LOCATION_Result">
           <Property Type="Int32" Name="Loc_ID" Nullable="false" />
@@ -1919,6 +1972,41 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
+        <EntityType Name="User_Location_Access">
+          <Key>
+            <PropertyRef Name="User_Loc_Access_ID" />
+          </Key>
+          <Property Name="User_Loc_Access_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="User_ID" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Loc_ID" Type="Int32" Nullable="false" />
+          <Property Name="Permissions" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Location" Relationship="DevSpaModel.FK_User_Location_Access_Location" FromRole="User_Location_Access" ToRole="Location" />
+          <NavigationProperty Name="User" Relationship="DevSpaModel.FK_User_Location_Access_User" FromRole="User_Location_Access" ToRole="User" />
+        </EntityType>
+        <Association Name="FK_User_Location_Access_Location">
+          <End Type="DevSpaModel.Location" Role="Location" Multiplicity="1" />
+          <End Type="DevSpaModel.User_Location_Access" Role="User_Location_Access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Location">
+              <PropertyRef Name="Loc_ID" />
+            </Principal>
+            <Dependent Role="User_Location_Access">
+              <PropertyRef Name="Loc_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_User_Location_Access_User">
+          <End Type="DevSpaModel.User" Role="User" Multiplicity="1" />
+          <End Type="DevSpaModel.User_Location_Access" Role="User_Location_Access" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="User_ID" />
+            </Principal>
+            <Dependent Role="User_Location_Access">
+              <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2358,6 +2446,16 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <FunctionImportMapping FunctionImportName="UPDATE_LOCATION" FunctionName="DevSpaModel.Store.UPDATE_LOCATION" />
           <FunctionImportMapping FunctionImportName="USER_LOGGED_IN" FunctionName="DevSpaModel.Store.USER_LOGGED_IN" />
           <FunctionImportMapping FunctionImportName="USER_LOGGED_OUT" FunctionName="DevSpaModel.Store.USER_LOGGED_OUT" />
+          <EntitySetMapping Name="User_Location_Access">
+            <EntityTypeMapping TypeName="DevSpaModel.User_Location_Access">
+              <MappingFragment StoreEntitySet="User_Location_Access">
+                <ScalarProperty Name="Permissions" ColumnName="Permissions" />
+                <ScalarProperty Name="Loc_ID" ColumnName="Loc_ID" />
+                <ScalarProperty Name="User_ID" ColumnName="User_ID" />
+                <ScalarProperty Name="User_Loc_Access_ID" ColumnName="User_Loc_Access_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

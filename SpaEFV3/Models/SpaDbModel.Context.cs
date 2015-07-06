@@ -55,6 +55,7 @@ namespace SpaEFV3.Models
         public virtual DbSet<Purchase_Order> Purchase_Order { get; set; }
         public virtual DbSet<Stock_Added> Stock_Added { get; set; }
         public virtual DbSet<Treatment_Inventory_Usage> Treatment_Inventory_Usage { get; set; }
+        public virtual DbSet<User_Location_Access> User_Location_Access { get; set; }
     
         public virtual int ADD_LOCATION(string loc_Code, string loc_Region, string loc_Name, string loc_Hotel_Name, string loc_Spa_Name, string loc_Address, string loc_City, string loc_State, string loc_Country, string loc_ContactNo, string loc_Comment)
         {

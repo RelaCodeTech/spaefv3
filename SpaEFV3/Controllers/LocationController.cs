@@ -17,8 +17,19 @@ namespace SpaEFV3.Controllers
         // GET: /Location/
         public ActionResult Index()
         {
-            var locations = db.Locations.Include(l => l.Business).Include(l => l.LookUp_LocationRegion);
-            return View(locations.ToList());
+            if (Session["LoggedInUser"] == null || String.IsNullOrEmpty(Session["LoggedInUser"].ToString()))
+            {
+                return RedirectToAction("Login", "Login");
+            }
+            else
+            {
+                string LoggedInUser = Session["LoggedInUser"].ToString();
+
+                var locations = db.Locations.Include(l => l.Business).Include(l => l.LookUp_LocationRegion);
+                //var locations = db.Locations.Include(l => l.Business).Include(l => l.LookUp_LocationRegion).Where(m => m.User_Location_Access.);
+                return View(locations.ToList());
+            }
+
         }
 
         // GET: /Location/Details/5

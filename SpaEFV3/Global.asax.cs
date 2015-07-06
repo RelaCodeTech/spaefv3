@@ -13,6 +13,8 @@ namespace SpaEFV3
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
         }
+
     }
 }

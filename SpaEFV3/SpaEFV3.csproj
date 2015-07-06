@@ -266,6 +266,9 @@
     <Compile Include="Models\UserRole.cs">
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\User_Location_Access.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Voucher_Master.cs">
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
@@ -375,6 +378,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\MyApp\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

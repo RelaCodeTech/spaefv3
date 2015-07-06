@@ -17,6 +17,7 @@ namespace SpaEFV3.Models
         public User()
         {
             this.UserLogs = new HashSet<UserLog>();
+            this.User_Location_Access = new HashSet<User_Location_Access>();
         }
     
         public string User_ID { get; set; }
@@ -30,5 +31,6 @@ namespace SpaEFV3.Models
     
         public virtual UserRole UserRole { get; set; }
         public virtual ICollection<UserLog> UserLogs { get; set; }
+        public virtual ICollection<User_Location_Access> User_Location_Access { get; set; }
     }
 }
