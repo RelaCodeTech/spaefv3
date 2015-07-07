@@ -25,8 +25,15 @@ namespace SpaEFV3.Controllers
             {
                 string LoggedInUser = Session["LoggedInUser"].ToString();
 
-                var locations = db.Locations.Include(l => l.Business).Include(l => l.LookUp_LocationRegion);
-                //var locations = db.Locations.Include(l => l.Business).Include(l => l.LookUp_LocationRegion).Where(m => m.User_Location_Access.);
+                //original - gets all locations
+                //var locations = db.Locations.Include(l => l.Business).Include(l => l.LookUp_LocationRegion);
+
+                //added filter to get locations which are associated with logged in user
+                var locations = db.Locations.
+                                    //Include(l => l.Business).
+                                    //Include(l => l.LookUp_LocationRegion).
+                                    Where(m => m.User_Location_Access.Any(p => p.User_ID.Equals(LoggedInUser)));
+
                 return View(locations.ToList());
             }
 
@@ -51,7 +58,7 @@ namespace SpaEFV3.Controllers
         public ActionResult Create()
         {
             ViewBag.Business_ID = new SelectList(db.Businesses, "Business_ID", "Business_Name");
-            ViewBag.Loc_Region = new SelectList(db.LookUp_LocationRegion, "Region_Name", "Comment");
+            ViewBag.Loc_Region = new SelectList(db.LookUp_LocationRegion, "Region_Name", "Region_Name");
             return View();
         }
 
@@ -79,7 +86,7 @@ namespace SpaEFV3.Controllers
             }
 
             ViewBag.Business_ID = new SelectList(db.Businesses, "Business_ID", "Business_Name", location.Business_ID);
-            ViewBag.Loc_Region = new SelectList(db.LookUp_LocationRegion, "Region_Name", "Comment", location.Loc_Region);
+            ViewBag.Loc_Region = new SelectList(db.LookUp_LocationRegion, "Region_Name", "Region_Name", location.Loc_Region);
             return View(location);
         }
 
@@ -96,7 +103,7 @@ namespace SpaEFV3.Controllers
                 return HttpNotFound();
             }
             ViewBag.Business_ID = new SelectList(db.Businesses, "Business_ID", "Business_Name", location.Business_ID);
-            ViewBag.Loc_Region = new SelectList(db.LookUp_LocationRegion, "Region_Name", "Comment", location.Loc_Region);
+            ViewBag.Loc_Region = new SelectList(db.LookUp_LocationRegion, "Region_Name", "Region_Name", location.Loc_Region);
             return View(location);
         }
 

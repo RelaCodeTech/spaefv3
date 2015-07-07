@@ -143,10 +143,12 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CustomerController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LocationTaxController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
+    <Compile Include="Controllers\MembershipController.cs" />
     <Compile Include="Controllers\OrderController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ServiceController.cs" />
@@ -157,6 +159,7 @@
     <Compile Include="Controllers\TreatmentInventoryUsageController.cs" />
     <Compile Include="Controllers\TreatmentsForServiceController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\UserForLocationController.cs" />
     <Compile Include="Controllers\UserRoleController.cs" />
     <Compile Include="Controllers\VoucherController.cs" />
     <Compile Include="DAL\IUserRepository.cs" />
@@ -171,6 +174,9 @@
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Customer.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Customer_Membership_Details.cs">
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GET_ALL_LOCATION_Result.cs">
@@ -201,6 +207,9 @@
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\LookUp_State.cs">
+      <DependentUpon>SpaDbModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Membership_Master.cs">
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\Order.cs">
@@ -359,16 +368,28 @@
     <Content Include="Views\Order\Details.cshtml" />
     <Content Include="Views\Order\Edit.cshtml" />
     <Content Include="Views\Order\Index.cshtml" />
-    <Content Include="Views\Voucher\Create.cshtml" />
-    <Content Include="Views\Voucher\Delete.cshtml" />
-    <Content Include="Views\Voucher\Details.cshtml" />
-    <Content Include="Views\Voucher\Edit.cshtml" />
-    <Content Include="Views\Voucher\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutForSiteVisitor.cshtml" />
     <Content Include="Views\Shared\_LayoutForUserGeneral.cshtml" />
     <Content Include="Views\Home\Welcome.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Login\Signup.cshtml" />
+    <Content Include="Views\UserForLocation\Create.cshtml" />
+    <Content Include="Views\UserForLocation\Delete.cshtml" />
+    <Content Include="Views\UserForLocation\Details.cshtml" />
+    <Content Include="Views\UserForLocation\Edit.cshtml" />
+    <Content Include="Views\UserForLocation\Index.cshtml" />
+    <Content Include="Views\Voucher\Create.cshtml" />
+    <Content Include="Views\Voucher\Delete.cshtml" />
+    <Content Include="Views\Voucher\Details.cshtml" />
+    <Content Include="Views\Voucher\Edit.cshtml" />
+    <Content Include="Views\Voucher\Index.cshtml" />
+    <Content Include="Views\Error\PageNotFound.cshtml" />
+    <Content Include="Views\Error\AppErr.cshtml" />
+    <Content Include="Views\Membership\Create.cshtml" />
+    <Content Include="Views\Membership\Delete.cshtml" />
+    <Content Include="Views\Membership\Details.cshtml" />
+    <Content Include="Views\Membership\Edit.cshtml" />
+    <Content Include="Views\Membership\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

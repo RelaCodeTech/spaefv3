@@ -17,7 +17,8 @@ namespace SpaEFV3.Controllers
         // GET: /Voucher/
         public ActionResult Index()
         {
-            return View(db.Voucher_Master.ToList());
+            var voucher_master = db.Voucher_Master.Include(v => v.Business);
+            return View(voucher_master.ToList());
         }
 
         // GET: /Voucher/Details/5
@@ -38,6 +39,7 @@ namespace SpaEFV3.Controllers
         // GET: /Voucher/Create
         public ActionResult Create()
         {
+            ViewBag.Business_ID = new SelectList(db.Businesses, "Business_ID", "Business_Name");
             return View();
         }
 
@@ -46,15 +48,22 @@ namespace SpaEFV3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include="Voucher_ID,Voucher_Amount,Voucher_Created_Dt,Voucher_Expiry_Dt,Voucher_Created_By")] Voucher_Master voucher_master)
+        //public ActionResult Create([Bind(Include="Voucher_ID,Voucher_Amount,Voucher_Created_Dt,Voucher_Expiry_Dt,Voucher_Created_By,Business_ID,Voucher_Code,Voucher_Description,Voucher_Start_Dt")] Voucher_Master voucher_master)
+        public ActionResult Create([Bind(Include = "Business_ID,Voucher_Code,Voucher_Amount,Voucher_Description,Voucher_Start_Dt,Voucher_Expiry_Dt")] Voucher_Master voucher_master)
         {
             if (ModelState.IsValid)
             {
+                //sets create date time as now
+                voucher_master.Voucher_Created_Dt = System.DateTime.Now;
+
+                voucher_master.Voucher_Created_By = Session["LoggedInUser"].ToString();
+
                 db.Voucher_Master.Add(voucher_master);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
+            ViewBag.Business_ID = new SelectList(db.Businesses, "Business_ID", "Business_Name", voucher_master.Business_ID);
             return View(voucher_master);
         }
 
@@ -70,6 +79,7 @@ namespace SpaEFV3.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Business_ID = new SelectList(db.Businesses, "Business_ID", "Business_Name", voucher_master.Business_ID);
             return View(voucher_master);
         }
 
@@ -78,7 +88,7 @@ namespace SpaEFV3.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include="Voucher_ID,Voucher_Amount,Voucher_Created_Dt,Voucher_Expiry_Dt,Voucher_Created_By")] Voucher_Master voucher_master)
+        public ActionResult Edit([Bind(Include="Voucher_ID,Voucher_Amount,Voucher_Created_Dt,Voucher_Expiry_Dt,Voucher_Created_By,Business_ID,Voucher_Code,Voucher_Description,Voucher_Start_Dt")] Voucher_Master voucher_master)
         {
             if (ModelState.IsValid)
             {
@@ -86,6 +96,7 @@ namespace SpaEFV3.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.Business_ID = new SelectList(db.Businesses, "Business_ID", "Business_Name", voucher_master.Business_ID);
             return View(voucher_master);
         }
 

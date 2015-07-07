@@ -10,43 +10,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
 
+    @*Local JQuery reference*@
+    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="~/Content/jquery.dataTables.css">
+
+    @*Local Bootstrap reference*@
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
+
+    @*Online Bootstrap reference*@
+    @*<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">*@
+
+     @*Online DataTables CSS
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">*@
 
     @*Site Stylesheet*@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
 
-    @*Local JQuery reference*@
-    <link href="~/Content/jquery-ui.min.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-    <script src="~/Scripts/jquery.confirm.js"></script>
-    <script src="~/Scripts/jquery-ui.min.js"></script>
-    <script src="~/Scripts/jquery.validate.min.js"></script>
-    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-
-    @*Local Bootstrap reference - Commented as of now*@
-    @*<link href="~/Content/bootstrap-theme.min.css" rel="stylesheet" />
-        <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
-        <script src="~/Scripts/bootstrap.min.js"></script>*@
-
-    @*Online Bootstrap reference*@
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
-
-    <script src="~/Scripts/modernizr-2.6.2.js"></script>
-
-    @*LOCAL FILES
-        <!-- jQuery -->
-        <script type="text/javascript" charset="utf8" src="~/Scripts/jquery.js"></script>
-        <!-- DataTables CSS -->
-        <link rel="stylesheet" type="text/css" href="~/Content/jquery.dataTables.css">
-        <!-- DataTables -->
-        <script type="text/javascript" charset="utf8" src="~/Scripts/jquery.dataTables.js"></script>*@
-
-    <!-- DataTables CSS -->
-    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.7/css/jquery.dataTables.css">
-
-    <!-- DataTables -->
-    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>
 
 </head>
 <body>
@@ -74,6 +56,19 @@
     </div>
 
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.confirm.js"></script>
+    <script src="~/Scripts/jquery-ui.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
+    @*<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>*@
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    <!-- DataTables: CDN/Online link -->
+    @*<script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.7/js/jquery.dataTables.js"></script>*@
+
+    <!-- DataTables: Local link -->
+    <script type="text/javascript" charset="utf8" src="~/Scripts/jquery.dataTables.js"></script>
+
 </body>
 </html>

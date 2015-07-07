@@ -4,18 +4,25 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>Voucher Master</h2>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Create New Voucher", "Create")
 </p>
+<br/>
 <table class="table">
     <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Voucher_Code)
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Voucher_Amount)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Voucher_Created_Dt)
+            @Html.DisplayNameFor(model => model.Voucher_Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Voucher_Start_Dt)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Voucher_Expiry_Dt)
@@ -23,16 +30,22 @@
         <th>
             @Html.DisplayNameFor(model => model.Voucher_Created_By)
         </th>
-        <th></th>
+        <th>Actions</th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
         <td>
+            @Html.DisplayFor(modelItem => item.Voucher_Code)
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.Voucher_Amount)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.Voucher_Created_Dt)
+            @Html.DisplayFor(modelItem => item.Voucher_Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Voucher_Start_Dt)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Voucher_Expiry_Dt)

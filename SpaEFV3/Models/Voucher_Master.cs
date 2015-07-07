@@ -24,7 +24,12 @@ namespace SpaEFV3.Models
         public System.DateTime Voucher_Created_Dt { get; set; }
         public Nullable<System.DateTime> Voucher_Expiry_Dt { get; set; }
         public string Voucher_Created_By { get; set; }
+        public int Business_ID { get; set; }
+        public string Voucher_Code { get; set; }
+        public string Voucher_Description { get; set; }
+        public System.DateTime Voucher_Start_Dt { get; set; }
     
         public virtual ICollection<Voucher_Usage> Voucher_Usage { get; set; }
+        public virtual Business Business { get; set; }
     }
 }

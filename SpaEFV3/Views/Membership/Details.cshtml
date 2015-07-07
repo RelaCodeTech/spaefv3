@@ -1,0 +1,66 @@
+﻿@model SpaEFV3.Models.Membership_Master
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Membership_Master</h4>
+	<hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Membership_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Membership_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Membership_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Membership_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Membership_Validity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Membership_Validity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Membership_Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Membership_Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Business_Details.Business_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Business_Details.Business_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Business.Business_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Business.Business_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Membership_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -13,8 +13,18 @@ namespace SpaEFV3
         {
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-
         }
 
+        /// <summary>
+        /// handles application error
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        //protected void Application_Error(object sender, EventArgs e)
+        //{
+        //    Exception exception = Server.GetLastError();
+        //    Server.ClearError();
+        //    Response.Redirect("~/Error/AppErr");
+        //}
     }
 }

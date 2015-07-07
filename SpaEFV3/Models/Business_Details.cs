@@ -14,6 +14,11 @@ namespace SpaEFV3.Models
     
     public partial class Business_Details
     {
+        public Business_Details()
+        {
+            this.Membership_Master = new HashSet<Membership_Master>();
+        }
+    
         public int Business_ID { get; set; }
         public string Business_Address { get; set; }
         public string Business_City { get; set; }
@@ -26,5 +31,6 @@ namespace SpaEFV3.Models
         public string Business_Updated_By { get; set; }
     
         public virtual Business Business { get; set; }
+        public virtual ICollection<Membership_Master> Membership_Master { get; set; }
     }
 }

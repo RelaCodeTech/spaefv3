@@ -45,6 +45,25 @@
           <Property Name="Customer_Created_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
           <Property Name="Customer_Updated_Dt" Type="datetime" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="Customer_Membership_Details">
+          <Key>
+            <PropertyRef Name="Customer_Membership_Details_ID" />
+          </Key>
+          <Property Name="Customer_Membership_Details_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Customer_ID" Type="int" Nullable="false" />
+          <Property Name="Membership_ID" Type="int" Nullable="false" />
+          <Property Name="Membership_Start_Dt" Type="datetime" />
+          <Property Name="Membership_Stop_Dt" Type="datetime" />
+          <Property Name="Membership_Validity_Last_Dt" Type="datetime" />
+          <Property Name="Amount_Paid" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Membership_Is_Active" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Membership_Is_Upgrade" Type="char" MaxLength="1" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="250" />
+          <Property Name="Created_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Created_By" Type="varchar" MaxLength="50" />
+          <Property Name="Updated_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Updated_By" Type="varchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="Location">
           <Key>
             <PropertyRef Name="Loc_ID" />
@@ -104,6 +123,17 @@
           <Property Name="State_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Country_ID" Type="int" Nullable="false" />
           <Property Name="State_Name" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Membership_Master">
+          <Key>
+            <PropertyRef Name="Membership_ID" />
+          </Key>
+          <Property Name="Membership_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Business_ID" Type="int" Nullable="false" />
+          <Property Name="Membership_Type" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Membership_Amount" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Membership_Validity" Type="int" Nullable="false" />
+          <Property Name="Membership_Desc" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="Order">
           <Key>
@@ -293,8 +323,12 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
             <PropertyRef Name="Voucher_ID" />
           </Key>
           <Property Name="Voucher_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Business_ID" Type="int" Nullable="false" />
+          <Property Name="Voucher_Code" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="Voucher_Amount" Type="decimal" Precision="8" Scale="2" Nullable="false" />
+          <Property Name="Voucher_Description" Type="varchar" MaxLength="100" />
           <Property Name="Voucher_Created_Dt" Type="datetime" Nullable="false" />
+          <Property Name="Voucher_Start_Dt" Type="datetime" Nullable="false" />
           <Property Name="Voucher_Expiry_Dt" Type="datetime" />
           <Property Name="Voucher_Created_By" Type="varchar" MaxLength="50" />
         </EntityType>
@@ -355,6 +389,18 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Customer_Membership_Details_Customer">
+          <End Role="Customer" Type="Self.Customer" Multiplicity="1" />
+          <End Role="Customer_Membership_Details" Type="Self.Customer_Membership_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Customer_Membership_Details">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Location_Business">
           <End Role="Business" Type="Self.Business" Multiplicity="1" />
           <End Role="Location" Type="Self.Location" Multiplicity="*" />
@@ -412,6 +458,18 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
             </Principal>
             <Dependent Role="LookUp_State">
               <PropertyRef Name="Country_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Membership_Master_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="1" />
+          <End Role="Membership_Master" Type="Self.Membership_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="Business_ID" />
+            </Principal>
+            <Dependent Role="Membership_Master">
+              <PropertyRef Name="Business_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -607,6 +665,18 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_Voucher_Master_Business">
+          <End Role="Business" Type="Self.Business" Multiplicity="1" />
+          <End Role="Voucher_Master" Type="Self.Voucher_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="Business_ID" />
+            </Principal>
+            <Dependent Role="Voucher_Master">
+              <PropertyRef Name="Business_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_Voucher_Usage_Order">
           <End Role="Order" Type="Self.Order" Multiplicity="1" />
           <End Role="Voucher_Usage" Type="Self.Voucher_Usage" Multiplicity="*" />
@@ -799,12 +869,14 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <EntitySet Name="Business" EntityType="Self.Business" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Business_Details" EntityType="Self.Business_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Customer" EntityType="Self.Customer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customer_Membership_Details" EntityType="Self.Customer_Membership_Details" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location_Tax" EntityType="Self.Location_Tax" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LookUp_Country" EntityType="Self.LookUp_Country" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LookUp_LocationRegion" EntityType="Self.LookUp_LocationRegion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LookUp_Payment_Mode" EntityType="Self.LookUp_Payment_Mode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="LookUp_State" EntityType="Self.LookUp_State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Membership_Master" EntityType="Self.Membership_Master" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Service" EntityType="Self.Service" Schema="dbo" store:Type="Tables" />
@@ -859,6 +931,10 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
             <End Role="Location" EntitySet="Location" />
             <End Role="Customer" EntitySet="Customer" />
           </AssociationSet>
+          <AssociationSet Name="FK_Customer_Membership_Details_Customer" Association="Self.FK_Customer_Membership_Details_Customer">
+            <End Role="Customer" EntitySet="Customer" />
+            <End Role="Customer_Membership_Details" EntitySet="Customer_Membership_Details" />
+          </AssociationSet>
           <AssociationSet Name="FK_Location_Business" Association="Self.FK_Location_Business">
             <End Role="Business" EntitySet="Business" />
             <End Role="Location" EntitySet="Location" />
@@ -878,6 +954,10 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <AssociationSet Name="FK_LookUp_State_LookUp_Country" Association="Self.FK_LookUp_State_LookUp_Country">
             <End Role="LookUp_Country" EntitySet="LookUp_Country" />
             <End Role="LookUp_State" EntitySet="LookUp_State" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Membership_Master_Business" Association="Self.FK_Membership_Master_Business">
+            <End Role="Business" EntitySet="Business" />
+            <End Role="Membership_Master" EntitySet="Membership_Master" />
           </AssociationSet>
           <AssociationSet Name="FK_Order_Customer" Association="Self.FK_Order_Customer">
             <End Role="Customer" EntitySet="Customer" />
@@ -943,6 +1023,10 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
             <End Role="User" EntitySet="User" />
             <End Role="UserLog" EntitySet="UserLog" />
           </AssociationSet>
+          <AssociationSet Name="FK_Voucher_Master_Business" Association="Self.FK_Voucher_Master_Business">
+            <End Role="Business" EntitySet="Business" />
+            <End Role="Voucher_Master" EntitySet="Voucher_Master" />
+          </AssociationSet>
           <AssociationSet Name="FK_Voucher_Usage_Order" Association="Self.FK_Voucher_Usage_Order">
             <End Role="Order" EntitySet="Order" />
             <End Role="Voucher_Usage" EntitySet="Voucher_Usage" />
@@ -988,6 +1072,8 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <Property Name="Business_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
           <NavigationProperty Name="Business_Details" Relationship="Self.FK_Business_Details_Business" FromRole="Business" ToRole="Business_Details" />
           <NavigationProperty Name="Locations" Relationship="Self.FK_Location_Business" FromRole="Business" ToRole="Location" />
+          <NavigationProperty Name="Voucher_Master" Relationship="DevSpaModel.FK_Voucher_Master_Business" FromRole="Business" ToRole="Voucher_Master" />
+          <NavigationProperty Name="Membership_Master" Relationship="DevSpaModel.FK_Membership_Master_Business" FromRole="Business" ToRole="Membership_Master" />
         </EntityType>
         <EntityType Name="Business_Details">
           <Key>
@@ -1004,6 +1090,7 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <Property Name="Business_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Business_Updated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="Business" Relationship="Self.FK_Business_Details_Business" FromRole="Business_Details" ToRole="Business" />
+          <NavigationProperty Name="Membership_Master" Relationship="DevSpaModel.FK_Membership_Master_Business_Details" FromRole="Business_Details" ToRole="Membership_Master" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
@@ -1024,6 +1111,7 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <Property Name="Customer_Updated_Dt" Type="DateTime" Nullable="false" Precision="3" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="Location" Relationship="Self.FK_Customer_Location" FromRole="Customer" ToRole="Location" />
           <NavigationProperty Name="Orders" Relationship="Self.FK_Order_Customer" FromRole="Customer" ToRole="Order" />
+          <NavigationProperty Name="Customer_Membership_Details" Relationship="DevSpaModel.FK_Customer_Membership_Details_Customer" FromRole="Customer" ToRole="Customer_Membership_Details" />
         </EntityType>
         <EntityType Name="Location">
           <Key>
@@ -1250,8 +1338,13 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <Property Name="Voucher_Amount" Type="Decimal" Precision="8" Scale="2" Nullable="false" />
           <Property Name="Voucher_Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Voucher_Expiry_Dt" Type="DateTime" Precision="3" />
-          <Property Name="Voucher_Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Voucher_Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" annotation:StoreGeneratedPattern="None" />
           <NavigationProperty Name="Voucher_Usage" Relationship="Self.FK_Voucher_Usage_Voucher_Master" FromRole="Voucher_Master" ToRole="Voucher_Usage" />
+          <Property Name="Business_ID" Type="Int32" Nullable="false" />
+          <Property Name="Voucher_Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Voucher_Description" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Business" Relationship="DevSpaModel.FK_Voucher_Master_Business" FromRole="Voucher_Master" ToRole="Business" />
+          <Property Name="Voucher_Start_Dt" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <EntityType Name="Voucher_Usage">
           <Key>
@@ -1908,6 +2001,28 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
             <End Role="User" EntitySet="Users" />
             <End Role="User_Location_Access" EntitySet="User_Location_Access" />
           </AssociationSet>
+          <AssociationSet Name="FK_Voucher_Master_Business" Association="DevSpaModel.FK_Voucher_Master_Business">
+            <End Role="Business" EntitySet="Businesses" />
+            <End Role="Voucher_Master" EntitySet="Voucher_Master" />
+          </AssociationSet>
+          <EntitySet Name="Customer_Membership_Details" EntityType="DevSpaModel.Customer_Membership_Details" />
+          <EntitySet Name="Membership_Master" EntityType="DevSpaModel.Membership_Master" />
+          <AssociationSet Name="FK_Membership_Master_Business_Details" Association="DevSpaModel.FK_Membership_Master_Business_Details">
+            <End Role="Business_Details" EntitySet="Business_Details" />
+            <End Role="Membership_Master" EntitySet="Membership_Master" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Membership_Details_Customer" Association="DevSpaModel.FK_Customer_Membership_Details_Customer">
+            <End Role="Customer" EntitySet="Customers" />
+            <End Role="Customer_Membership_Details" EntitySet="Customer_Membership_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Customer_Membership_Details_Membership_Master" Association="DevSpaModel.FK_Customer_Membership_Details_Membership_Master">
+            <End Role="Membership_Master" EntitySet="Membership_Master" />
+            <End Role="Customer_Membership_Details" EntitySet="Customer_Membership_Details" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Membership_Master_Business" Association="DevSpaModel.FK_Membership_Master_Business">
+            <End Role="Business" EntitySet="Businesses" />
+            <End Role="Membership_Master" EntitySet="Membership_Master" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="GET_ALL_LOCATION_Result">
           <Property Type="Int32" Name="Loc_ID" Nullable="false" />
@@ -2004,6 +2119,101 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
             </Principal>
             <Dependent Role="User_Location_Access">
               <PropertyRef Name="User_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Voucher_Master_Business">
+          <End Type="DevSpaModel.Business" Role="Business" Multiplicity="1" />
+          <End Type="DevSpaModel.Voucher_Master" Role="Voucher_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="Business_ID" />
+            </Principal>
+            <Dependent Role="Voucher_Master">
+              <PropertyRef Name="Business_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Customer_Membership_Details">
+          <Key>
+            <PropertyRef Name="Customer_Membership_Details_ID" />
+          </Key>
+          <Property Name="Customer_Membership_Details_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Customer_ID" Type="Int32" Nullable="false" />
+          <Property Name="Membership_ID" Type="Int32" Nullable="false" />
+          <Property Name="Membership_Start_Dt" Type="DateTime" Precision="3" />
+          <Property Name="Membership_Stop_Dt" Type="DateTime" Precision="3" />
+          <Property Name="Membership_Validity_Last_Dt" Type="DateTime" Precision="3" />
+          <Property Name="Amount_Paid" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Membership_Is_Active" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Membership_Is_Upgrade" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="250" FixedLength="false" Unicode="false" />
+          <Property Name="Created_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Created_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Updated_Dt" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Updated_By" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Customer" Relationship="DevSpaModel.FK_Customer_Membership_Details_Customer" FromRole="Customer_Membership_Details" ToRole="Customer" />
+          <NavigationProperty Name="Membership_Master" Relationship="DevSpaModel.FK_Customer_Membership_Details_Membership_Master" FromRole="Customer_Membership_Details" ToRole="Membership_Master" />
+        </EntityType>
+        <EntityType Name="Membership_Master">
+          <Key>
+            <PropertyRef Name="Membership_ID" />
+          </Key>
+          <Property Name="Membership_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Business_ID" Type="Int32" Nullable="false" />
+          <Property Name="Membership_Type" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Membership_Amount" Type="Decimal" Nullable="false" Precision="8" Scale="2" />
+          <Property Name="Membership_Validity" Type="Int32" Nullable="false" />
+          <Property Name="Membership_Desc" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Business_Details" Relationship="DevSpaModel.FK_Membership_Master_Business_Details" FromRole="Membership_Master" ToRole="Business_Details" />
+          <NavigationProperty Name="Customer_Membership_Details" Relationship="DevSpaModel.FK_Customer_Membership_Details_Membership_Master" FromRole="Membership_Master" ToRole="Customer_Membership_Details" />
+          <NavigationProperty Name="Business" Relationship="DevSpaModel.FK_Membership_Master_Business" FromRole="Membership_Master" ToRole="Business" />
+        </EntityType>
+        <Association Name="FK_Membership_Master_Business_Details">
+          <End Type="DevSpaModel.Business_Details" Role="Business_Details" Multiplicity="1" />
+          <End Type="DevSpaModel.Membership_Master" Role="Membership_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business_Details">
+              <PropertyRef Name="Business_ID" />
+            </Principal>
+            <Dependent Role="Membership_Master">
+              <PropertyRef Name="Business_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Membership_Details_Customer">
+          <End Type="DevSpaModel.Customer" Role="Customer" Multiplicity="1" />
+          <End Type="DevSpaModel.Customer_Membership_Details" Role="Customer_Membership_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customer">
+              <PropertyRef Name="Customer_ID" />
+            </Principal>
+            <Dependent Role="Customer_Membership_Details">
+              <PropertyRef Name="Customer_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Customer_Membership_Details_Membership_Master">
+          <End Type="DevSpaModel.Membership_Master" Role="Membership_Master" Multiplicity="1" />
+          <End Type="DevSpaModel.Customer_Membership_Details" Role="Customer_Membership_Details" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Membership_Master">
+              <PropertyRef Name="Membership_ID" />
+            </Principal>
+            <Dependent Role="Customer_Membership_Details">
+              <PropertyRef Name="Membership_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Membership_Master_Business">
+          <End Type="DevSpaModel.Business" Role="Business" Multiplicity="1" />
+          <End Type="DevSpaModel.Membership_Master" Role="Membership_Master" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Business">
+              <PropertyRef Name="Business_ID" />
+            </Principal>
+            <Dependent Role="Membership_Master">
+              <PropertyRef Name="Business_ID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2255,6 +2465,10 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
           <EntitySetMapping Name="Voucher_Master">
             <EntityTypeMapping TypeName="DevSpaModel.Voucher_Master">
               <MappingFragment StoreEntitySet="Voucher_Master">
+                <ScalarProperty Name="Voucher_Start_Dt" ColumnName="Voucher_Start_Dt" />
+                <ScalarProperty Name="Voucher_Description" ColumnName="Voucher_Description" />
+                <ScalarProperty Name="Voucher_Code" ColumnName="Voucher_Code" />
+                <ScalarProperty Name="Business_ID" ColumnName="Business_ID" />
                 <ScalarProperty Name="Voucher_ID" ColumnName="Voucher_ID" />
                 <ScalarProperty Name="Voucher_Amount" ColumnName="Voucher_Amount" />
                 <ScalarProperty Name="Voucher_Created_Dt" ColumnName="Voucher_Created_Dt" />
@@ -2453,6 +2667,38 @@ warning 6002: The table/view 'DevSpa.dbo.Stock_Added' does not have a primary ke
                 <ScalarProperty Name="Loc_ID" ColumnName="Loc_ID" />
                 <ScalarProperty Name="User_ID" ColumnName="User_ID" />
                 <ScalarProperty Name="User_Loc_Access_ID" ColumnName="User_Loc_Access_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customer_Membership_Details">
+            <EntityTypeMapping TypeName="DevSpaModel.Customer_Membership_Details">
+              <MappingFragment StoreEntitySet="Customer_Membership_Details">
+                <ScalarProperty Name="Updated_By" ColumnName="Updated_By" />
+                <ScalarProperty Name="Updated_Dt" ColumnName="Updated_Dt" />
+                <ScalarProperty Name="Created_By" ColumnName="Created_By" />
+                <ScalarProperty Name="Created_Dt" ColumnName="Created_Dt" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Membership_Is_Upgrade" ColumnName="Membership_Is_Upgrade" />
+                <ScalarProperty Name="Membership_Is_Active" ColumnName="Membership_Is_Active" />
+                <ScalarProperty Name="Amount_Paid" ColumnName="Amount_Paid" />
+                <ScalarProperty Name="Membership_Validity_Last_Dt" ColumnName="Membership_Validity_Last_Dt" />
+                <ScalarProperty Name="Membership_Stop_Dt" ColumnName="Membership_Stop_Dt" />
+                <ScalarProperty Name="Membership_Start_Dt" ColumnName="Membership_Start_Dt" />
+                <ScalarProperty Name="Membership_ID" ColumnName="Membership_ID" />
+                <ScalarProperty Name="Customer_ID" ColumnName="Customer_ID" />
+                <ScalarProperty Name="Customer_Membership_Details_ID" ColumnName="Customer_Membership_Details_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Membership_Master">
+            <EntityTypeMapping TypeName="DevSpaModel.Membership_Master">
+              <MappingFragment StoreEntitySet="Membership_Master">
+                <ScalarProperty Name="Membership_Desc" ColumnName="Membership_Desc" />
+                <ScalarProperty Name="Membership_Validity" ColumnName="Membership_Validity" />
+                <ScalarProperty Name="Membership_Amount" ColumnName="Membership_Amount" />
+                <ScalarProperty Name="Membership_Type" ColumnName="Membership_Type" />
+                <ScalarProperty Name="Business_ID" ColumnName="Business_ID" />
+                <ScalarProperty Name="Membership_ID" ColumnName="Membership_ID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

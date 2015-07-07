@@ -17,6 +17,7 @@ namespace SpaEFV3.Models
         public Customer()
         {
             this.Orders = new HashSet<Order>();
+            this.Customer_Membership_Details = new HashSet<Customer_Membership_Details>();
         }
     
         public int Customer_ID { get; set; }
@@ -35,5 +36,6 @@ namespace SpaEFV3.Models
     
         public virtual Location Location { get; set; }
         public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Customer_Membership_Details> Customer_Membership_Details { get; set; }
     }
 }

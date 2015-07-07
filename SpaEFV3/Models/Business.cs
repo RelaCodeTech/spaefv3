@@ -17,6 +17,8 @@ namespace SpaEFV3.Models
         public Business()
         {
             this.Locations = new HashSet<Location>();
+            this.Voucher_Master = new HashSet<Voucher_Master>();
+            this.Membership_Master = new HashSet<Membership_Master>();
         }
     
         public int Business_ID { get; set; }
@@ -24,5 +26,7 @@ namespace SpaEFV3.Models
     
         public virtual Business_Details Business_Details { get; set; }
         public virtual ICollection<Location> Locations { get; set; }
+        public virtual ICollection<Voucher_Master> Voucher_Master { get; set; }
+        public virtual ICollection<Membership_Master> Membership_Master { get; set; }
     }
 }

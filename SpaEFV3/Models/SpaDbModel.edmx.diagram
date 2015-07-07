@@ -61,9 +61,16 @@
         <AssociationConnector Association="DevSpaModel.FK_UserLog_User" ManuallyRouted="false" />
         <AssociationConnector Association="DevSpaModel.FK_Voucher_Usage_Voucher_Master" ManuallyRouted="false" />
         <AssociationConnector Association="DevSpaModel.Order_Taxes" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DevSpaModel.User_Location_Access" Width="1.5" PointX="20.25" PointY="10.625" />
+        <EntityTypeShape EntityType="DevSpaModel.User_Location_Access" Width="2.625" PointX="20.25" PointY="10.625" />
         <AssociationConnector Association="DevSpaModel.FK_User_Location_Access_Location" />
         <AssociationConnector Association="DevSpaModel.FK_User_Location_Access_User" />
+        <AssociationConnector Association="DevSpaModel.FK_Voucher_Master_Business" />
+        <EntityTypeShape EntityType="DevSpaModel.Customer_Membership_Details" Width="1.5" PointX="16.5" PointY="14.5" />
+        <EntityTypeShape EntityType="DevSpaModel.Membership_Master" Width="1.5" PointX="5.25" PointY="17.125" />
+        <AssociationConnector Association="DevSpaModel.FK_Membership_Master_Business_Details" />
+        <AssociationConnector Association="DevSpaModel.FK_Customer_Membership_Details_Customer" />
+        <AssociationConnector Association="DevSpaModel.FK_Customer_Membership_Details_Membership_Master" />
+        <AssociationConnector Association="DevSpaModel.FK_Membership_Master_Business" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

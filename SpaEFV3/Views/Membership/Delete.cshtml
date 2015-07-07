@@ -1,0 +1,72 @@
+﻿@model SpaEFV3.Models.Membership_Master
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Membership_Master</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Membership_Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Membership_Type)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Membership_Amount)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Membership_Amount)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Membership_Validity)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Membership_Validity)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Membership_Desc)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Membership_Desc)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Business_Details.Business_Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Business_Details.Business_Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Business.Business_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Business.Business_Name)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

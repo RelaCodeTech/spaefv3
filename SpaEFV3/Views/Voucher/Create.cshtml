@@ -6,7 +6,6 @@
 
 <h2>Create</h2>
 
-
 @using (Html.BeginForm()) 
 {
     @Html.AntiForgeryToken()
@@ -17,6 +16,22 @@
         @Html.ValidationSummary(true)
 
         <div class="form-group">
+            @Html.LabelFor(model => model.Business_ID, "Business_ID", new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("Business_ID", String.Empty)
+                @Html.ValidationMessageFor(model => model.Business_ID)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Voucher_Code, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Voucher_Code)
+                @Html.ValidationMessageFor(model => model.Voucher_Code)
+            </div>
+        </div>
+
+        <div class="form-group">
             @Html.LabelFor(model => model.Voucher_Amount, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Voucher_Amount)
@@ -25,10 +40,18 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Voucher_Created_Dt, new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.Voucher_Description, new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Voucher_Created_Dt)
-                @Html.ValidationMessageFor(model => model.Voucher_Created_Dt)
+                @Html.EditorFor(model => model.Voucher_Description)
+                @Html.ValidationMessageFor(model => model.Voucher_Description)
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Voucher_Start_Dt, new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Voucher_Start_Dt)
+                @Html.ValidationMessageFor(model => model.Voucher_Start_Dt)
             </div>
         </div>
 
@@ -37,14 +60,6 @@
             <div class="col-md-10">
                 @Html.EditorFor(model => model.Voucher_Expiry_Dt)
                 @Html.ValidationMessageFor(model => model.Voucher_Expiry_Dt)
-            </div>
-        </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.Voucher_Created_By, new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Voucher_Created_By)
-                @Html.ValidationMessageFor(model => model.Voucher_Created_By)
             </div>
         </div>
 
@@ -59,7 +74,3 @@
 <div>
     @Html.ActionLink("Back to List", "Index")
 </div>
-
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
