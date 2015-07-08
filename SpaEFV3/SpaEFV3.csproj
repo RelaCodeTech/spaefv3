@@ -99,6 +99,7 @@
     <Content Include="DB-Scripts\02-july-2015\table-script.sql" />
     <Content Include="DB-Scripts\03-july-2015\sp-script.sql" />
     <Content Include="DB-Scripts\03-july-2015\table-script.sql" />
+    <Content Include="DB-Scripts\08-july-2015\all-script.sql" />
     <Content Include="Global.asax" />
     <EntityDeploy Include="Models\SpaDbModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
