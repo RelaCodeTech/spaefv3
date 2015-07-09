@@ -9,9 +9,12 @@
 
 namespace SpaEFV3.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
-    
+    using System.Runtime.Serialization;
+    using System.ComponentModel.DataAnnotations;
+  
     public partial class LookUp_Country
     {
         public LookUp_Country()
@@ -19,11 +22,19 @@ namespace SpaEFV3.Models
             this.LookUp_State = new HashSet<LookUp_State>();
             this.Tax_Master = new HashSet<Tax_Master>();
         }
-    
+
+        [Display(Name = "Country ID")]
         public int Country_ID { get; set; }
+
+        [Display(Name = "Country")]
         public string Country_Name { get; set; }
-    
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<LookUp_State> LookUp_State { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual ICollection<Tax_Master> Tax_Master { get; set; }
     }
 }

@@ -1,7 +1,8 @@
 ﻿
 
 angular.module('MyApp', [])
-.controller("CustomerCtrl", [ '$scope', function($scope) {
+.controller("CustomerCtrl", ['$scope', function ($scope) {
+
     $scope.customers = [
                         {  'fname':'sandy',
                             'lname': 'patil',
@@ -26,5 +27,6 @@ angular.module('MyApp', [])
         $scope.lname='';
         $scope.age='';
     }
+
 }]);
 

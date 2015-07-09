@@ -11,6 +11,7 @@ namespace SpaEFV3.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class User
     {
@@ -20,13 +21,28 @@ namespace SpaEFV3.Models
             this.User_Location_Access = new HashSet<User_Location_Access>();
         }
     
+        [Display(Name="Login ID")]
         public string User_ID { get; set; }
+
+        [Display(Name = "Password")]
         public string Pwd { get; set; }
+
+        [Display(Name = "Role")]
         public string Role { get; set; }
+
+        [Display(Name = "First name")]
         public string User_Fname { get; set; }
+
+        [Display(Name = "Last name")]
         public string User_Lname { get; set; }
+
+        [Display(Name = "Is Active")]
         public string User_Is_Active { get; set; }
+
+        [Display(Name = "Created Dt")]
         public System.DateTime User_Created_Dt { get; set; }
+
+        [Display(Name = "Updated Dt")]
         public System.DateTime User_Updated_Dt { get; set; }
     
         public virtual UserRole UserRole { get; set; }

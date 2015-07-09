@@ -9,8 +9,11 @@
 
 namespace SpaEFV3.Models
 {
+    using Newtonsoft.Json;
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using System.Runtime.Serialization;
     
     public partial class Tax_Master
     {
@@ -19,12 +22,24 @@ namespace SpaEFV3.Models
             this.Location_Tax = new HashSet<Location_Tax>();
         }
     
+        [Display(Name="Tax ID")]
         public int Tax_ID { get; set; }
+
+        [Display(Name = "Country ID")]
         public int Country_ID { get; set; }
+
+        [Display(Name = "Tax Short Nm")]
         public string Tax_Short_Name { get; set; }
+
+        [Display(Name = "Tax Desc")]
         public string Tax_Description { get; set; }
     
+        [JsonIgnore] 
+        [IgnoreDataMember] 
         public virtual ICollection<Location_Tax> Location_Tax { get; set; }
+
+        [JsonIgnore]
+        [IgnoreDataMember]
         public virtual LookUp_Country LookUp_Country { get; set; }
     }
 }

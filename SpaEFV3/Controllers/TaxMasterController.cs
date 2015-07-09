@@ -7,6 +7,7 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using SpaEFV3.Models;
+using System.Web.Script.Serialization;
 
 namespace SpaEFV3.Controllers
 {
@@ -18,6 +19,11 @@ namespace SpaEFV3.Controllers
         public ActionResult Index()
         {
             var tax_master = db.Tax_Master.Include(t => t.LookUp_Country);
+            //var tax_master = db.Tax_Master;
+
+            //converts object to string but fails due to reference loop error
+            //var json = new JavaScriptSerializer().Serialize(tax_master);
+
             return View(tax_master.ToList());
         }
 

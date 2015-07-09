@@ -8,9 +8,9 @@
 <br />
 
 
-<div id="commentedblock">
+<div id="original-block">
 
-    @*@using (Html.BeginForm())
+    @using (Html.BeginForm())
         {
             @Html.AntiForgeryToken()
 
@@ -113,193 +113,197 @@
                     </div>
                 </div>
             </div>
-        }*@
+        }
 </div>
 
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
+<div id="angular-block">
 
-    <div ng-app="MyApp" class="form-horizontal">
+    @*@using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
 
-        <div class="row">
+        <div ng-app="MyApp" class="form-horizontal">
 
-            @*Left side box*@
-            <div class="col-md-12">
+            <div class="row">
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Order_Dt, new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        @Html.EditorFor(model => model.Order_Dt)
-                        @Html.ValidationMessageFor(model => model.Order_Dt)
+                <div class="col-md-12">
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Order_Dt, new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.EditorFor(model => model.Order_Dt)
+                            @Html.ValidationMessageFor(model => model.Order_Dt)
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Order_Loc_ID, new { @class = "control-label col-md-2" })
+                        <div class="col-md-2">
+                            @Html.DropDownList("Order_Loc_ID", String.Empty)
+                            @Html.ValidationMessageFor(model => model.Order_Loc_ID)
+                        </div>
+                    </div>
+
+                    <div id="customer-input-area" style="">
+
+                        <p><b>Customer details:</b></p>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Customer.Customer_MobileNo, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Customer.Customer_MobileNo)
+                                @Html.ValidationMessageFor(model => model.Customer.Customer_MobileNo)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Customer.Customer_Fname, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Customer.Customer_Fname)
+                                @Html.ValidationMessageFor(model => model.Customer.Customer_Fname)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Customer.Customer_Lname, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Customer.Customer_Lname)
+                                @Html.ValidationMessageFor(model => model.Customer.Customer_Lname)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Customer.Customer_MobileNo, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Customer.Customer_EmailID)
+                                @Html.ValidationMessageFor(model => model.Customer.Customer_EmailID)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Customer.Customer_Gender, new { @class = "control-label col-md-2" })
+                            <div class="col-md-2">
+                                @Html.EditorFor(model => model.Customer.Customer_Gender)
+                                @Html.ValidationMessageFor(model => model.Customer.Customer_Gender)
+                            </div>
+                        </div>
+                        <br />
+                    </div>
+
+                    <div id="order-input-area" style="">
+                        <p><b>Order details:</b></p>
+
+                        <table border="1">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Select Therapy
+                                    </th>
+                                    <th>
+                                        Comp Therapy
+                                    </th>
+                                    <th>
+                                        Therapist
+                                    </th>
+                                    <th>
+                                        Start Time
+                                    </th>
+                                    <th>
+                                        End Time
+                                    </th>
+                                    <th>
+                                        Total Time
+                                    </th>
+                                    <th>
+                                        Price
+                                    </th>
+                                    <th>
+                                        Discount
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Select Therapy</td>
+                                    <td>Select Therapy</td>
+                                    <td>Select Therapy</td>
+                                    <td>Select Therapy</td>
+                                    <td>Select Therapy</td>
+                                    <td>Select Therapy</td>
+                                    <td>Select Therapy</td>
+                                    <td>Select Therapy</td>
+                                </tr>
+                            </tbody>
+                        </table>
+
+                        <br /><br />
+
+                    </div>
+
+                </div>
+
+                <div class="col-md-2">
+
+                </div>
+
+            </div>
+
+            <div ng-controller="CustomerCtrl">
+                <div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">fname</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="fname" class="form-control" name="fname"
+                                   ng-model="fname" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">lname</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="lname" class="form-control" name="lname"
+                                   ng-model="lname" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-md-2 control-label">age</label>
+                        <div class="col-md-4">
+                            <input type="text" placeholder="age" class="form-control" name="age"
+                                   ng-model="age" />
+                        </div>
                     </div>
                 </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Order_Loc_ID, new { @class = "control-label col-md-2" })
-                    <div class="col-md-2">
-                        @Html.DropDownList("Order_Loc_ID", String.Empty)
-                        @Html.ValidationMessageFor(model => model.Order_Loc_ID)
-                    </div>
+                <div>
+                    <input type="button" value="add row" id="addRow" ng-click="addRow()" />
                 </div>
 
-                <div id="customer-input-area" style="">
-
-                    <p><b>Customer details:</b></p>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Customer.Customer_MobileNo, new { @class = "control-label col-md-2" })
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.Customer.Customer_MobileNo)
-                            @Html.ValidationMessageFor(model => model.Customer.Customer_MobileNo)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Customer.Customer_Fname, new { @class = "control-label col-md-2" })
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.Customer.Customer_Fname)
-                            @Html.ValidationMessageFor(model => model.Customer.Customer_Fname)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Customer.Customer_Lname, new { @class = "control-label col-md-2" })
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.Customer.Customer_Lname)
-                            @Html.ValidationMessageFor(model => model.Customer.Customer_Lname)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Customer.Customer_MobileNo, new { @class = "control-label col-md-2" })
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.Customer.Customer_EmailID)
-                            @Html.ValidationMessageFor(model => model.Customer.Customer_EmailID)
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        @Html.LabelFor(model => model.Customer.Customer_Gender, new { @class = "control-label col-md-2" })
-                        <div class="col-md-2">
-                            @Html.EditorFor(model => model.Customer.Customer_Gender)
-                            @Html.ValidationMessageFor(model => model.Customer.Customer_Gender)
-                        </div>
-                    </div>
-                    <br />
-                </div>
-
-                <div id="order-input-area" style="">
-                    <p><b>Order details:</b></p>
-
+                <div>
                     <table border="1">
                         <thead>
                             <tr>
-                                <th>
-                                    Select Therapy
-                                </th>
-                                <th>
-                                    Comp Therapy
-                                </th>
-                                <th>
-                                    Therapist
-                                </th>
-                                <th>
-                                    Start Time
-                                </th>
-                                <th>
-                                    End Time
-                                </th>
-                                <th>
-                                    Total Time
-                                </th>
-                                <th>
-                                    Price
-                                </th>
-                                <th>
-                                    Discount
-                                </th>
+                                <th>fname</th>
+                                <th>lname</th>
+                                <th>emailid</th>
+                            </tr>
+                            <tr ng-repeat="customer in customers">
+                                <td>{{customer.fname}}</td>
+                                <td>{{customer.lname}}</td>
+                                <td>{{customer.age}}</td>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Select Therapy</td>
-                                <td>Select Therapy</td>
-                                <td>Select Therapy</td>
-                                <td>Select Therapy</td>
-                                <td>Select Therapy</td>
-                                <td>Select Therapy</td>
-                                <td>Select Therapy</td>
-                                <td>Select Therapy</td>
-                            </tr>
-                        </tbody>
                     </table>
-
-                    <br /><br />
-
                 </div>
 
-            </div>
-
-            @*Right side box*@
-            <div class="col-md-2">
 
             </div>
 
         </div>
-
-        <div ng-controller="CustomerCtrl">
-            <div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label">fname</label>
-                    <div class="col-md-4">
-                        <input type="text" placeholder="fname" class="form-control" name="fname"
-                               ng-model="fname" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label">lname</label>
-                    <div class="col-md-4">
-                        <input type="text" placeholder="lname" class="form-control" name="lname"
-                               ng-model="lname" />
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label class="col-md-2 control-label">age</label>
-                    <div class="col-md-4">
-                        <input type="text" placeholder="age" class="form-control" name="age"
-                               ng-model="age" />
-                    </div>
-                </div>
-            </div>
-
-            <div>
-                <input type="button" value="add row" id="addRow" ng-click="addRow()" />
-            </div>
-
-            <div>
-                <table border="1">
-                    <thead>
-                        <tr>
-                            <th>fname</th>
-                            <th>lname</th>
-                            <th>emailid</th>
-                        </tr>
-                        <tr ng-repeat="customer in customers">
-                            <td>{{customer.fname}}</td>
-                            <td>{{customer.lname}}</td>
-                            <td>{{customer.age}}</td>
-                        </tr>
-                    </thead>
-                </table>
-            </div>
+    }*@
 
 
-        </div>
+</div>
 
-    </div>
-}
 
 <br /><br /><br />
 
