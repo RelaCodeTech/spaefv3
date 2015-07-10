@@ -16,6 +16,9 @@ namespace SpaEFV3
             AreaRegistration.RegisterAllAreas();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
+            //AutoMapper mappings are processed here
+            SpaEFV3.App_Start.AutoMapperConfig.RegisterMappings();
+
             //handling self-reference errors while returing json data from WEB API
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Serialize;
             GlobalConfiguration.Configuration.Formatters.JsonFormatter.SerializerSettings.PreserveReferencesHandling = Newtonsoft.Json.PreserveReferencesHandling.Objects;

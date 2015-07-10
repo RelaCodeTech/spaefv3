@@ -34,12 +34,12 @@ namespace SpaEFV3.Models
         [Display(Name = "Tax Desc")]
         public string Tax_Description { get; set; }
     
-        [JsonIgnore] 
-        [IgnoreDataMember] 
+        //[JsonIgnore] 
+        //[IgnoreDataMember] 
         public virtual ICollection<Location_Tax> Location_Tax { get; set; }
 
-        [JsonIgnore]
-        [IgnoreDataMember]
+        //[JsonIgnore]
+        //[IgnoreDataMember]
         public virtual LookUp_Country LookUp_Country { get; set; }
     }
 }

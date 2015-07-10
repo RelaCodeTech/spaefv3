@@ -1,69 +1,51 @@
-﻿@model IEnumerable<SpaEFV3.Models.Tax_Master>
+﻿@*@model IEnumerable<SpaEFV3.Models.Tax_Master>*@
+@model IEnumerable<SpaEFV3.ViewModels.TaxMaster.TaxMasterListViewModel>
+@*@model String*@
 
 @{
     ViewBag.Title = "Index";
 }
 
-@*<script type="text/javascript">
-
-    var myapp = angular.module('TaxMaster', []);
-
-    myapp.controller('TaxMasterCtrl', function TaxMasterCtrl($scope, $http) {
-        $http.get('http://localhost:51664/api/TaxMasterWebApi').success(function (data) {
-            $scope.taxdata = data;
-        });
-    });
-        
-
-</script>*@
-
 <h2>Index</h2>
 
-<div ng-app="TaxMaster" ng-controller="TaxMasterCtrl">
+@*<div ng-app="TaxMaster" ng-controller="TaxMasterCtrl" ng-init="@Model">*@
+    <div>
 
     <p>
         @Html.ActionLink("Create New", "Create")
     </p>
     <table class="table">
         <tr>
-            <th>
-                @Html.DisplayNameFor(model => model.Tax_Short_Name)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Tax_Description)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.LookUp_Country.Country_Name)
-            </th>
-            <th></th>
+            <th>@Html.DisplayNameFor(model => model.Tax_Short_Name)</th>
+            <th>@Html.DisplayNameFor(model => model.Tax_Description)</th>
+            <th>@Html.DisplayNameFor(model => model.CountryName)</th>
+            <th>Actions</th>
         </tr>
 
-        @*@foreach (var item in Model)
-        {*@
-            <tr ng-repeat="item in taxdata.TM">
-                @*<td>
-                        @Html.DisplayFor(modelItem => item.Tax_Short_Name)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.Tax_Description)
-                    </td>
-                    <td>
-                        @Html.DisplayFor(modelItem => item.LookUp_Country.Country_Name)
-                    </td>*@
-                <td>{{item.Tax_Short_Name}}</td>
-                <td>{{item.Tax_Description}}</td>
-                <td>{{item.Country_ID}}</td>
+        @foreach (var item in Model)
+        {
+            <tr ng-repeat="item in Model">
+ 
+                <td>@Html.DisplayFor(modelItem => item.Tax_Short_Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Tax_Description)</td>
+                <td>@Html.DisplayFor(modelItem => item.CountryName)</td>
 
-                @*<td>
+                @*<td>{{item.Tax_Short_Name}}</td>
+                <td>{{item.Tax_Description}}</td>
+                <td>{{item.Country_ID}}</td>*@
+
+                <td>
                     @Html.ActionLink("Edit", "Edit", new { id = item.Tax_ID }) |
                     @Html.ActionLink("Details", "Details", new { id = item.Tax_ID }) |
                     @Html.ActionLink("Delete", "Delete", new { id = item.Tax_ID })
-                </td>*@
+                </td>
 
             </tr>
-        @*}*@
+        }
 
     </table>
 
 </div>
+
+
 

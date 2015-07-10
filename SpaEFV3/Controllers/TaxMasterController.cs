@@ -8,6 +8,8 @@ using System.Web;
 using System.Web.Mvc;
 using SpaEFV3.Models;
 using System.Web.Script.Serialization;
+using AutoMapper;
+using SpaEFV3.ViewModels.TaxMaster;
 
 namespace SpaEFV3.Controllers
 {
@@ -19,12 +21,24 @@ namespace SpaEFV3.Controllers
         public ActionResult Index()
         {
             var tax_master = db.Tax_Master.Include(t => t.LookUp_Country);
-            //var tax_master = db.Tax_Master;
+
+            //normal data
+            //return View(tax_master.ToList());
+
+            //using Automapper
+            AutoMapper.Mapper.CreateMap<Tax_Master, TaxMasterListViewModel>();
+
+            IList<TaxMasterListViewModel> TaxMasterViewModelList =
+            AutoMapper.Mapper.Map<IQueryable<Tax_Master>, IList<TaxMasterListViewModel>>(db.Tax_Master.Include(t => t.LookUp_Country));
 
             //converts object to string but fails due to reference loop error
-            //var json = new JavaScriptSerializer().Serialize(tax_master);
+            var json = new JavaScriptSerializer().Serialize(TaxMasterViewModelList);
 
-            return View(tax_master.ToList());
+            //ListViewModel data
+            return View(TaxMasterViewModelList);
+
+            //to work with AngularJs
+            //return View(json);
         }
 
         // GET: /TaxMaster/Details/5
