@@ -326,6 +326,7 @@
       <DependentUpon>SpaDbModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\TaxMaster\TaxMasterIndexVM.cs" />
     <Compile Include="ViewModels\TaxMaster\TaxMasterListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -423,6 +424,7 @@
     <Content Include="Views\Membership\Details.cshtml" />
     <Content Include="Views\Membership\Edit.cshtml" />
     <Content Include="Views\Membership\Index.cshtml" />
+    <Content Include="Views\TaxMaster\CreateNew.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,0 +1,52 @@
+﻿@*@model SpaEFV3.Models.Tax_Master*@
+@model SpaEFV3.ViewModels.TaxMaster.TaxMasterListViewModel
+
+@*@{
+        ViewBag.Title = "Create New Tax";
+    }
+
+    <h2>Create</h2>*@
+
+
+@using (Html.BeginForm("CreateNew", "TaxMaster", FormMethod.Post, new { @class = "form-inline", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-group">
+        @Html.TextBoxFor(model => model.Tax_Short_Name, new { placeholder = "Tax Short Name" })
+        @*@Html.ValidationMessageFor(model => model.Tax_Short_Name)*@
+    </div>
+
+    <div class="form-group">
+        @Html.TextBoxFor(model => model.Tax_Description, new { placeholder = "Tax Description" })
+        @*@Html.ValidationMessageFor(model => model.Tax_Description)*@
+    </div>
+
+    <div class="form-group">
+        @Html.EditorFor(model => model.Country_ID)
+    </div>
+
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.Country_ID, "Country_ID", new { @class = "control-label col-md-2" })
+        <div class="col-md-2">
+            @Html.DropDownList("Country_ID", String.Empty)
+            @Html.ValidationMessageFor(model => model.Country_ID)
+        </div>
+    </div>*@
+
+    <input type="submit" value="Create" class="btn btn-success" />
+    <button type="reset" class="btn btn-default" ng-click="cancelAddForm()">Cancel</button>
+
+    <div>
+        <span>@Html.ValidationMessageFor(model => model.Tax_Short_Name)</span>
+        <span>@Html.ValidationMessageFor(model => model.Country_ID)</span>
+    </div>
+
+}
+
+<br />
+
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+

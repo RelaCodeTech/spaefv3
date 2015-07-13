@@ -10,6 +10,9 @@ using SpaEFV3.Models;
 using System.Web.Script.Serialization;
 using AutoMapper;
 using SpaEFV3.ViewModels.TaxMaster;
+using System.IO;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
 
 namespace SpaEFV3.Controllers
 {
@@ -32,13 +35,49 @@ namespace SpaEFV3.Controllers
             AutoMapper.Mapper.Map<IQueryable<Tax_Master>, IList<TaxMasterListViewModel>>(db.Tax_Master.Include(t => t.LookUp_Country));
 
             //converts object to string but fails due to reference loop error
-            var json = new JavaScriptSerializer().Serialize(TaxMasterViewModelList);
+            //var json = new JavaScriptSerializer().Serialize(TaxMasterViewModelList);
+
+            TaxMasterIndexVM TaxMasterData = new TaxMasterIndexVM();
+            TaxMasterData.TaxMasterList = TaxMasterViewModelList;
+            TaxMasterData.NewTax = new TaxMasterListViewModel();
+            //TaxMasterData.NewTax.CountryList = db.LookUp_Country.To
+
+            //return TaxMasterIndexVM
+            return View(TaxMasterData);
 
             //ListViewModel data
-            return View(TaxMasterViewModelList);
+            //return View(TaxMasterViewModelList);
 
             //to work with AngularJs
             //return View(json);
+
+            //serialize object
+            //var TMData = SerializeObject(TaxMasterViewModelList);
+            //return View(TMData);
+        }
+
+        /// <summary>
+        /// serialize object to json
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public IHtmlString SerializeObject(object value)
+        {
+            using (var stringWriter = new StringWriter())
+            using (var jsonWriter = new JsonTextWriter(stringWriter))
+            {
+                var serializer = new JsonSerializer
+                {
+                    // Let's use camelCasing as is common practice in JavaScript
+                    //ContractResolver = new CamelCasePropertyNamesContractResolver()
+                };
+
+                // We don't want quotes around object names
+                jsonWriter.QuoteName = false;
+                serializer.Serialize(jsonWriter, value);
+
+                return new HtmlString(stringWriter.ToString());
+            }
         }
 
         // GET: /TaxMaster/Details/5
@@ -80,6 +119,37 @@ namespace SpaEFV3.Controllers
             ViewBag.Country_ID = new SelectList(db.LookUp_Country, "Country_ID", "Country_Name", tax_master.Country_ID);
             return View(tax_master);
         }
+
+        // GET: /TaxMaster/Create
+        public ActionResult CreateNew()
+        {
+            ViewBag.Country_ID = new SelectList(db.LookUp_Country, "Country_ID", "Country_Name");
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult CreateNew([Bind(Include = "Tax_ID,Country_ID,Tax_Short_Name,Tax_Description")] TaxMasterListViewModel NewTaxData)
+        {
+            //using Automapper
+            AutoMapper.Mapper.CreateMap<TaxMasterListViewModel, Tax_Master>();
+
+            Tax_Master NewTax =
+            AutoMapper.Mapper.Map<TaxMasterListViewModel, Tax_Master>(NewTaxData);
+
+
+            if (ModelState.IsValid)
+            {
+                db.Tax_Master.Add(NewTax);
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+
+            return RedirectToAction("Index");
+
+        }
+
 
         // GET: /TaxMaster/Edit/5
         public ActionResult Edit(int? id)

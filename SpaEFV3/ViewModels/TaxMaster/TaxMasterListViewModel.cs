@@ -15,9 +15,11 @@ namespace SpaEFV3.ViewModels.TaxMaster
         [Display(Name = "Tax ID")]
         public int Tax_ID { get; set; }
 
+        [Required]
         [Display(Name = "Country ID")]
         public int Country_ID { get; set; }
 
+        [Required]
         [Display(Name = "Tax Short Nm")]
         public string Tax_Short_Name { get; set; }
 
@@ -26,6 +28,8 @@ namespace SpaEFV3.ViewModels.TaxMaster
 
         [Display(Name = "Country")]
         public string CountryName { get; set; }
+
+        //public IEnumerable<string> CountryList { get; set; }
 
     }
 }

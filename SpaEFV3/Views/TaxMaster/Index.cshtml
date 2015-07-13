@@ -1,53 +1,166 @@
 ﻿@*@model IEnumerable<SpaEFV3.Models.Tax_Master>*@
-@model IEnumerable<SpaEFV3.ViewModels.TaxMaster.TaxMasterListViewModel>
-@*@model String*@
+@*@model IEnumerable<SpaEFV3.ViewModels.TaxMaster.TaxMasterListViewModel>*@
+@model SpaEFV3.ViewModels.TaxMaster.TaxMasterIndexVM
+
 
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h4>Tax Master</h4>
 
-<!--need to use angularjs here-->
 
-@*<div ng-app="TaxMaster" ng-controller="TaxMasterCtrl" ng-init="@Model">*@
-    <div>
+<div id="Using-MVC">
 
-    <p>
-        @Html.ActionLink("Create New", "Create")
-    </p>
-    <table class="table">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.Tax_Short_Name)</th>
-            <th>@Html.DisplayNameFor(model => model.Tax_Description)</th>
-            <th>@Html.DisplayNameFor(model => model.CountryName)</th>
-            <th>Actions</th>
-        </tr>
+    <!--AngularJs-->
+    @*<script>
+            angular.module("TaxMaster").value("TaxMasterData", @Html.Raw(Model));
+        </script>*@
 
-        @foreach (var item in Model)
-        {
-            <tr ng-repeat="item in Model">
- 
-                <td>@Html.DisplayFor(modelItem => item.Tax_Short_Name)</td>
-                <td>@Html.DisplayFor(modelItem => item.Tax_Description)</td>
-                <td>@Html.DisplayFor(modelItem => item.CountryName)</td>
 
-                @*<td>{{item.Tax_Short_Name}}</td>
-                <td>{{item.Tax_Description}}</td>
-                <td>{{item.Country_ID}}</td>*@
+    <div ng-app="TaxMaster" ng-controller="TaxMasterCtrl">
 
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.Tax_ID }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.Tax_ID }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.Tax_ID })
-                </td>
-
+        <p>
+            @Html.ActionLink("Create New", "Create")
+        </p>
+        <table class="table">
+            <tr>
+                <th><p>Short Name</p></th>
+                <th><p>Desc</p></th>
+                <th><p>Country</p></th>
+                <th><p>CountryName</p></th>
+                <th>Actions</th>
             </tr>
-        }
 
-    </table>
+            @*<tr ng-repeat="tax in TMData">*@
+            @foreach (var item in Model.TaxMasterList)
+            {
+                <tr>
+
+                    <td>@Html.DisplayFor(modelItem => item.Tax_Short_Name)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Tax_Description)</td>
+                    <td>@Html.DisplayFor(modelItem => item.Country_ID)</td>
+                    <td>@Html.DisplayFor(modelItem => item.CountryName)</td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.Tax_ID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.Tax_ID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Tax_ID })
+                    </td>
+
+                </tr>
+            }
+
+        </table>
+
+        @*@using (Html.BeginForm("CreateNew", "TaxMaster"))
+            {
+                @Html.AntiForgeryToken()
+
+                <div>
+                    <div ng-hide="isAddFormVisible" class="row">
+                        <form name="newTaxForm" class="form-inline">
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.NewTax.Tax_Short_Name)
+                                @Html.ValidationMessageFor(model => model.NewTax.Tax_Short_Name)
+                            </div>
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.NewTax.Tax_Description)
+                                @Html.ValidationMessageFor(model => model.NewTax.Tax_Description)
+                            </div>
+                            <div class="form-group">
+                                @Html.EditorFor(model => model.NewTax.Country_ID)
+                                @Html.ValidationMessageFor(model => model.NewTax.Country_ID)
+                            </div>
+                            <input type="submit" value="Create" class="btn btn-default" />
+                            <button type="reset" class="btn btn-default" ng-click="cancelAddForm()">Cancel</button>
+                        </form>
+                    </div>
+                    <br />
+
+                    <div ng-click="showAddForm()" class="row">
+                        <button type="button" class="btn btn-primary">Add New Tax</button>
+                    </div>
+                </div>
+
+            }*@
+
+        <div ng-hide="isAddFormVisible" class="row">
+                @Html.Partial("CreateNew", Model.NewTax)
+        </div>
+        <div ng-click="showAddForm()" class="row">
+            <button type="button" class="btn btn-primary">Add New Tax</button>
+        </div>
+
+
+    </div>
 
 </div>
 
 
+<div id="Using-AngularJs">
+    @*//AngularJs
+        <script>
+            angular.module("TaxMaster").value("TaxMasterData", @Html.Raw(Model));
+        </script>
 
+
+        <div ng-app="TaxMaster" ng-controller="TaxMasterCtrl">
+
+            <p>
+                @Html.ActionLink("Create New", "Create")
+            </p>
+            <table class="table">
+                <tr>
+                    <th><p>Short Name</p></th>
+                    <th><p>Desc</p></th>
+                    <th><p>Country</p></th>
+                    <th><p>CountryName</p></th>
+                    <th>Actions</th>
+                </tr>
+
+                <tr ng-repeat="tax in TMData">
+
+                    <td>{{tax.Tax_Short_Name}}</td>
+                    <td>{{tax.Tax_Description}}</td>
+                    <td>{{tax.Country_ID}}</td>
+                    <td>{{tax.CountryName}}</td>
+                    <td>
+                        <a data-ng-href="@Url.Action("Edit", "TaxMaster")/{{tax.Tax_ID}}" target="_self">Edit</a> |
+                        <a data-ng-href="@Url.Action("Details", "TaxMaster")/{{tax.Tax_ID}}" target="_self">Details</a> |
+                        <a data-ng-href="@Url.Action("Delete", "TaxMaster")/{{tax.Tax_ID}}" target="_self">Delete</a>
+                    </td>
+
+                </tr>
+
+            </table>
+
+            <div>
+                <div ng-hide="isAddFormVisible" class="row">
+                    <form name="newTaxForm" class="form-inline">
+                        <div class="form-group">
+                            <label class="sr-only" for="txtTaxShortName">Short Name</label>
+                            <input type="text" ng-model="tax.Tax_Short_Name" ng-required="true" class="form-control" id="txtTaxShortName" placeholder="Short Name">
+                            <p ng-show="newTaxForm.txtTaxShortName.$error.required" class=" error">Short Name Required</p>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" ng-model="tax.Tax_Description" class="form-control" id="txtTaxDesc" placeholder="Description">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" ng-model="tax.Country_ID" class="form-control" id="txtTaxCountry" placeholder="Country">
+                        </div>
+                        <button type="submit" class="btn btn-success" ng-click="addNewTax(tax)">Add</button>
+                        <button type="reset" class="btn btn-default" ng-click="cancelAddForm()">Cancel</button>
+                    </form>
+                </div>
+                <br />
+
+                <div ng-click="showAddForm()" class="row">
+                    <button type="button" class="btn btn-primary">Add New Tax</button>
+                </div>
+            </div>
+
+
+        </div>*@
+
+
+</div>
